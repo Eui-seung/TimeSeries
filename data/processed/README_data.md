@@ -34,7 +34,7 @@
 | `station_date_hour.csv.gz` | 1,787,058 × 25 | 역×날짜×방향(direction: 승차/하차)별 **시간대 20개**(before_06, h06_07 … h23_24, after_24). 환승역은 노선 합산. 2021년은 h23_24에 '23시 이후' 합산 값이 들어 있고 after_24는 비어 있음(`flag_23plus_merged`=1). 집계 오류 4건은 해당 방향 행이 NaN(`flag_one_side_zero_set_nan`=1). |
 | `weather_daily.csv` | 4,383 × 11 | **서울(ASOS 108) 일별 날씨, 2014-01-01~2025-12-31 (feels_like_max 외 결측 없음).** date, temp_mean / tmax / tmin(℃), rain_mm(일 합계), snow_depth_max(cm, 일 최대), snow_new_cm(3시간신적설 일 합계), wind_mean(m/s), rh_mean(%), feels_like_max(℃, 기상청 여름철 식으로 시간별 계산 후 일 최대, 5~9월만 값이 있고 10~4월은 NaN), precip_flag9_hours. 강수·적설·신적설 빈칸은 0 처리(`data_notes.md` 마지막 절). 날짜(date)로 `station_daily`/`group_daily`에 붙임. |
 | `weather_daily_check.csv` | 12 × 10 | 연도별 시간 빈틈 점검표(기대·실제 시간 수, 12월 31일 시간 수, 1월 1일 0시 유무, 기온·습도 빈 시간 수, NaN 일수). |
-| `model_input_9stations.csv` | 39,447 × 41 | **모델 입력: 단독형 역 9개 × 2014-01-01~2025-12-31 일별** (날짜 빈틈·`total` 결측 없음). 열 설명은 아래 '모델 입력 열 설명'. |
+| `model_input_9stations.csv` | 39,447 × 42 | **모델 입력: 단독형 역 9개 × 2014-01-01~2025-12-31 일별** (날짜 빈틈·`total` 결측 없음). 열 설명은 아래 '모델 입력 열 설명'. |
 
 ## 역 이름 통일·범위 (2~3단계)
 | 파일 | 행 | 설명 |
@@ -112,6 +112,7 @@
 | `covid` / `mers` / `strike` | 2020-02-01~2022-04-30 / 2015-05-20~2015-07-28 / 2016-09-27~29, 2022-11-30, 2023-11-09~10 = 1 (전 역) |
 | `rally_cityhall` | 시청역만: 2016-10-29~2017-04-29, 2024-12-07~2025-04-05 사이의 토요일 = 1 (그 외 역은 0) |
 | `fare_2015`, `fare_2023`, `fare_2025`, `climate_card` | 요금 인상 2015-06-27 / 2023-10-07 / 2025-06-28, 기후동행카드 2024-01-27부터 1 (전 역) |
+| `summer_vacation` | 매년 7월 마지막 월요일 ~ 8월 둘째 일요일 = 1 (전 역; 연 14일, 7월 마지막 월요일이 25일인 2016·2022년은 21일, 12년 합계 182일) |
 | `sillim_line`, `sinbundang_ext` | 2022-05-28부터 1: 서울대입구만 / 신사만 (그 외 역은 0) |
 | `temp_mean` … `precip_flag9_hours` (10열) | `weather_daily.csv`를 `date`로 붙임. `feels_like_max`는 5~9월만 값 있음 |
 | `alert_heat`, `alert_cold`, `alert_rain`, `alert_snow` | 기상특보. **지금은 전부 비어 있음**(나중에 `rawdata/alert/`를 `district` 기준으로 채움) |

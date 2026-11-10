@@ -5,6 +5,7 @@
 - split: 2014~2023 train, 2024 validation, 2025 test
 - 가리기용 0/1 열: holiday, labor_day(매년 5/1), myeongjeol_pm2(설날·추석 당일 ±2일), covid, mers, strike, rally_cityhall(시청역만)
 - 계단 더미(시행일부터 1): fare_2015/fare_2023/fare_2025/climate_card(전 역), sillim_line(서울대입구만), sinbundang_ext(신사만)
+- 계절 더미: summer_vacation(매년 7월 마지막 월요일 ~ 8월 둘째 일요일 = 1, 전 역)
 - weather_daily.csv를 date로 left join
 - 특보 열(alert_heat/cold/rain/snow)은 비워 둠(나중에 rawdata/alert/ 파일을 district 열 기준으로 붙임)
 
@@ -22,9 +23,18 @@ RALLY = [('2016-10-29', '2017-04-29'), ('2024-12-07', '2025-04-05')]       # 시
 STEPS = {'fare_2015': '2015-06-27', 'fare_2023': '2023-10-07', 'fare_2025': '2025-06-28', 'climate_card': '2024-01-27'}
 STATION_STEPS = {'sillim_line': ('서울대입구', '2022-05-28'), 'sinbundang_ext': ('신사', '2022-05-28')}
 MYEONGJEOL_DAYS = 2                                           # 명절 당일 앞뒤로 가리는 일수 (원래 1이었다가 연휴 직전 토요일까지 가리려고 2로 넓힘)
+SEASONS = ['summer_vacation']
 MASKS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall']
 WEATHER = ['temp_mean', 'tmax', 'tmin', 'rain_mm', 'snow_depth_max', 'snow_new_cm', 'wind_mean', 'rh_mean', 'feels_like_max', 'precip_flag9_hours']
 ALERTS = ['alert_heat', 'alert_cold', 'alert_rain', 'alert_snow']
+
+
+def summer_vacation_range(year):
+    """7월의 마지막 월요일 ~ 8월의 두 번째 일요일"""
+    jul = pd.date_range(f'{year}-07-01', f'{year}-07-31')
+    start = jul[jul.dayofweek == 0].max()
+    aug = pd.date_range(f'{year}-08-01', f'{year}-08-31')
+    return start, aug[aug.dayofweek == 6][1]
 
 
 def in_ranges(dates, ranges):
@@ -60,6 +70,9 @@ def build():
     D['strike'] = in_ranges(D.date, STRIKE)
     D['rally_cityhall'] = (in_ranges(D.date, RALLY) & (D.date.dt.dayofweek == 5) & (D.station == '시청')).astype(int)
 
+    # ---- 계절 더미
+    D['summer_vacation'] = in_ranges(D.date, [summer_vacation_range(y) for y in range(2014, 2026)])
+
     # ---- 계단 더미
     for k, d in STEPS.items():
         D[k] = (D.date >= d).astype(int)
@@ -75,7 +88,7 @@ def build():
         D[c] = np.nan
 
     cols = ['station', 'district', 'date', 'split', 'boarding', 'alighting', 'total', 'flag_one_side_zero', 'day_of_week', 'is_weekend', 'group',
-            'score_commercial_leisure', 'score_residential', 'score_employment'] + MASKS + list(STEPS) + list(STATION_STEPS) + WEATHER + ALERTS
+            'score_commercial_leisure', 'score_residential', 'score_employment'] + MASKS + list(STEPS) + SEASONS + list(STATION_STEPS) + WEATHER + ALERTS
     return D[cols]
 
 
@@ -94,4 +107,5 @@ if __name__ == '__main__':
     print(D.shape, D.date.min().date(), D.date.max().date())
     print(D.groupby('split').date.agg(['min', 'max', 'nunique']).to_string())
     print(summary(D).to_string())
+    print('summer_vacation:', {y: (str(a.date()), str(b.date()), (b - a).days + 1) for y in range(2014, 2026) for a, b in [summer_vacation_range(y)]})
     print('NaN 열별:', D.isna().sum()[lambda s: s > 0].to_dict())

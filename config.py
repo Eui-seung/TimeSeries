@@ -12,6 +12,9 @@ MASK_COLS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike'
 # 계단 더미 (전 역 공통)
 STEP_COLS = ['fare_2015', 'fare_2023', 'fare_2025', 'climate_card']
 
+# 계절 더미 (전 역 공통): 매년 7월 마지막 월요일 ~ 8월 둘째 일요일 = 1
+SEASON_COLS = ['summer_vacation']
+
 # 해당 역만 쓰는 계단 더미: 역 -> 열 이름
 STATION_STEP = {'서울대입구': 'sillim_line', '신사': 'sinbundang_ext'}
 

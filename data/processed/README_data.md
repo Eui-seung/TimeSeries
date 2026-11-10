@@ -1,5 +1,19 @@
 # 서울 지하철 전처리 결과 (README)
 
+## 저장소에 포함된 파일 / 포함되지 않은 파일
+**포함된 파일**
+- `data/processed/model_input_9stations.csv` — 모델 입력(단독형 역 9개 × 2014~2025 일별)
+- `data/processed/weather_daily.csv` — 서울 일별 날씨(2014~2025)
+- `data/processed/README_data.md`, `data/processed/data_notes.md` — 이 문서와 전처리 기록
+- `scripts/` — 원본에서 위 파일까지 다시 만드는 코드(단계별 설명은 `scripts/README.md`)
+- `config.py` — 모델링 설정(역·열 이름·분할·SARIMA 차수)
+
+**포함되지 않은 파일** (아래 표·본문에 이름이 나오지만 저장소에는 없음)
+- 용량 때문에 제외: `station_daily.csv.gz`, `station_date_hour.csv.gz`, `rawdata/`(지하철 승하차 원본·ASOS 원본), `data/interim/`(`raw_*.pkl`)
+- 그 밖에 올리지 않은 것: `group_daily.csv`, `station_map.csv`, `station_type.csv`, `weather_daily_check.csv` 등 `data/processed/`의 나머지 산출물과 `figures/`
+- **원본 데이터 출처**: 서울 지하철 승하차 인원은 서울교통공사가 공개한 역별 일별 시간대별 승하차인원 자료(파일 목록은 `data_notes.md`의 '사용 파일'), 날씨는 기상청 기상자료개방포털의 종관기상관측(ASOS) 시간자료 서울(108)이다. 원본은 `rawdata/`와 `rawdata/asos/`에 두면 된다.
+- **다시 만드는 방법**: 원본을 `rawdata/`에 두고 `scripts/README.md`의 순서(step1~step7 → step8 → step9)대로 실행하면 제외된 파일과 `model_input_9stations.csv`를 다시 만들 수 있다.
+
 서울교통공사 1~8호선 역별·일별·시간대별 승하차 인원(원본: `rawdata/`, 수정하지 않음)을 정리한 결과물입니다.
 상세한 결정·근거·이상 기록은 `data_notes.md`에 있습니다. 모든 CSV는 UTF-8(BOM), 열 이름은 영문, 역 이름 값은 한글입니다.
 

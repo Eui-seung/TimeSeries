@@ -7,7 +7,7 @@
 STATIONS = ['시청', '역삼', '선릉', '신촌', '혜화', '신사', '서울대입구', '수유', '연신내']
 
 # 가리기용 0/1 열 (전 역 공통; rally_cityhall은 시청역만 값이 1)
-MASK_COLS = ['holiday', 'myeongjeol_pm1', 'covid', 'mers', 'strike', 'rally_cityhall']
+MASK_COLS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall']
 
 # 계단 더미 (전 역 공통)
 STEP_COLS = ['fare_2015', 'fare_2023', 'fare_2025', 'climate_card']
@@ -26,3 +26,7 @@ SEASONAL_ORDER = (1, 1, 1, 7)
 
 # 기상특보 발효 후 가리는 일수
 ALERT_MASK_AFTER_DAYS = 7
+
+# 적합 설정 (수렴 문제로 최적화 방법과 최대 반복 횟수를 명시)
+FIT_METHOD = 'lbfgs'
+FIT_MAXITER = 1000

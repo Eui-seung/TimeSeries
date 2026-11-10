@@ -1,6 +1,8 @@
 # 데이터 메모
 
 > 저장소에는 `model_input_9stations.csv`, `weather_daily.csv`, 문서, `scripts/`, `config.py`만 있고 `rawdata/`와 `*.gz` 등 큰 파일은 용량 때문에 제외했다. 자세한 목록과 다시 만드는 방법은 `README_data.md` 맨 위 참고.
+>
+> 지하철 승하차 원본 출처: 서울 열린데이터광장 「서울교통공사_역별 일별 시간대별 승하차인원 정보」 https://data.seoul.go.kr/dataList/OA-12921/F/1/datasetView.do , 공공데이터포털 같은 자료(2024년까지) https://www.data.go.kr/data/15048032/fileData.do
 
 ## 사용 파일 (확정)
 - 2014~2021: 연도별 파일 / 2022: `…정보_20221231.csv` / 2023: `(23.1~23.12)` / 2024: `(24.1~24.12)`

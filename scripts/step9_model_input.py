@@ -3,7 +3,7 @@
 - 대상: Employment(시청·역삼·선릉), Commercial & Leisure(신촌·혜화·신사), Residential(서울대입구·수유·연신내)
 - station_daily.csv.gz에서 뽑고(날짜 빈틈 없이 재인덱스), 역별 요인점수 3개와 자치구를 붙임
 - split: 2014~2023 train, 2024 validation, 2025 test
-- 가리기용 0/1 열: holiday, myeongjeol_pm1, covid, mers, strike, rally_cityhall(시청역만)
+- 가리기용 0/1 열: holiday, labor_day(매년 5/1), myeongjeol_pm2(설날·추석 당일 ±2일), covid, mers, strike, rally_cityhall(시청역만)
 - 계단 더미(시행일부터 1): fare_2015/fare_2023/fare_2025/climate_card(전 역), sillim_line(서울대입구만), sinbundang_ext(신사만)
 - weather_daily.csv를 date로 left join
 - 특보 열(alert_heat/cold/rain/snow)은 비워 둠(나중에 rawdata/alert/ 파일을 district 열 기준으로 붙임)
@@ -21,7 +21,8 @@ STRIKE = [('2016-09-27', '2016-09-29'), ('2022-11-30', '2022-11-30'), ('2023-11-
 RALLY = [('2016-10-29', '2017-04-29'), ('2024-12-07', '2025-04-05')]       # 시청역, 토요일만
 STEPS = {'fare_2015': '2015-06-27', 'fare_2023': '2023-10-07', 'fare_2025': '2025-06-28', 'climate_card': '2024-01-27'}
 STATION_STEPS = {'sillim_line': ('서울대입구', '2022-05-28'), 'sinbundang_ext': ('신사', '2022-05-28')}
-MASKS = ['holiday', 'myeongjeol_pm1', 'covid', 'mers', 'strike', 'rally_cityhall']
+MYEONGJEOL_DAYS = 2                                           # 명절 당일 앞뒤로 가리는 일수 (원래 1이었다가 연휴 직전 토요일까지 가리려고 2로 넓힘)
+MASKS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall']
 WEATHER = ['temp_mean', 'tmax', 'tmin', 'rain_mm', 'snow_depth_max', 'snow_new_cm', 'wind_mean', 'rh_mean', 'feels_like_max', 'precip_flag9_hours']
 ALERTS = ['alert_heat', 'alert_cold', 'alert_rain', 'alert_snow']
 
@@ -50,9 +51,10 @@ def build():
     # ---- 가리기용 0/1
     cal = sd.drop_duplicates('date').set_index('date').holiday_name.reindex(pd.date_range(START, END)).fillna('')
     D['holiday'] = D.date.map(sd.drop_duplicates('date').set_index('date').is_public_holiday).fillna(0).astype(int)
+    D['labor_day'] = ((D.date.dt.month == 5) & (D.date.dt.day == 1)).astype(int)         # 근로자의 날(법정 공휴일 아님, 업무지구는 사실상 휴일)
     day0 = cal.index[[any(t.strip() in ('설날', '추석') for t in n.split(';')) for n in cal]]      # 명절 당일
-    near = set(day0) | set(day0 - pd.Timedelta(days=1)) | set(day0 + pd.Timedelta(days=1))
-    D['myeongjeol_pm1'] = D.date.isin(near).astype(int)
+    near = set().union(*[set(day0 + pd.Timedelta(days=k)) for k in range(-MYEONGJEOL_DAYS, MYEONGJEOL_DAYS + 1)])
+    D['myeongjeol_pm2'] = D.date.isin(near).astype(int)      # 당일 ±MYEONGJEOL_DAYS(=2)일
     D['covid'] = in_ranges(D.date, [('2020-02-01', '2022-04-30')])
     D['mers'] = in_ranges(D.date, [('2015-05-20', '2015-07-28')])
     D['strike'] = in_ranges(D.date, STRIKE)

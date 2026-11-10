@@ -1,0 +1,13 @@
+﻿변수,모형,유의_역수,음수_역수
+alert_heat,A,3,9
+alert_heat,C,2,9
+alert_heat,C_lag,1,7
+alert_cold,A,3,9
+alert_cold,C,2,7
+alert_cold,C_lag,2,8
+alert_rain,A,5,9
+alert_rain,C,0,4
+alert_rain,C_lag,6,9
+alert_snow,A,1,0
+alert_snow,C,0,3
+alert_snow,C_lag,0,1

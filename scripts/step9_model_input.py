@@ -7,7 +7,9 @@
 - 계단 더미(시행일부터 1): fare_2015/fare_2023/fare_2025/climate_card(전 역), sillim_line(서울대입구만), sinbundang_ext(신사만)
 - 계절 더미: summer_vacation(매년 7월 마지막 월요일 ~ 8월 둘째 일요일 = 1, 전 역)
 - weather_daily.csv를 date로 left join
-- 특보 열(alert_heat/cold/rain/snow)은 비워 둠(나중에 rawdata/alert/ 파일을 district 열 기준으로 붙임)
+- 특보 열(alert_heat/cold/rain/snow, any_alert): 팀 저장소의 서울_날씨특보_활성상태_일별_onehot.csv(rawdata/alert/ 또는 저장소 루트)를 date로 붙임.
+  서울 전체 기준이라 9개 역 모두 같은 값(권역 미구분, 주의보·경보 단계 구분 없음). 파일이 시작하는 2014-01-08 앞의 2014-01-01~07은 특보 여부를 알 수 없어
+  alert_*를 비워 두고(NaN) alert_unknown=1(가리기용)
 
 실행: python scripts/step8_weather_daily.py 후 python scripts/step9_model_input.py
 """
@@ -24,9 +26,13 @@ STEPS = {'fare_2015': '2015-06-27', 'fare_2023': '2023-10-07', 'fare_2025': '202
 STATION_STEPS = {'sillim_line': ('서울대입구', '2022-05-28'), 'sinbundang_ext': ('신사', '2022-05-28')}
 MYEONGJEOL_DAYS = 2                                           # 명절 당일 앞뒤로 가리는 일수 (원래 1이었다가 연휴 직전 토요일까지 가리려고 2로 넓힘)
 SEASONS = ['summer_vacation']
-MASKS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall']
+MASKS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall', 'alert_unknown']
 WEATHER = ['temp_mean', 'tmax', 'tmin', 'rain_mm', 'snow_depth_max', 'snow_new_cm', 'wind_mean', 'rh_mean', 'feels_like_max', 'precip_flag9_hours']
-ALERTS = ['alert_heat', 'alert_cold', 'alert_rain', 'alert_snow']
+ALERT_FOUR = ['alert_heat', 'alert_cold', 'alert_rain', 'alert_snow']
+ALERTS = ALERT_FOUR + ['any_alert']
+ALERT_NAME = '서울_날씨특보_활성상태_일별_onehot.csv'
+ALERT_MAP = {'한파': 'alert_cold', '폭염': 'alert_heat', '호우': 'alert_rain', '대설': 'alert_snow'}
+ALERT_PATHS = [RAW / 'alert' / ALERT_NAME, ROOT / ALERT_NAME]
 
 
 def summer_vacation_range(year):
@@ -79,13 +85,22 @@ def build():
     for k, (st, d) in STATION_STEPS.items():
         D[k] = ((D.date >= d) & (D.station == st)).astype(int)
 
-    # ---- 날씨 (date로 left join), 특보(빈 열)
+    # ---- 날씨 (date로 left join)
     W = pd.read_csv(PROC / 'weather_daily.csv', parse_dates=['date'])
     n = len(D)
     D = D.merge(W, on='date', how='left')
     assert len(D) == n
-    for c in ALERTS:
-        D[c] = np.nan
+
+    # ---- 특보 (서울 전체 기준, 모든 역 같은 값). 파일에 없는 날(2014-01-01~07)은 NaN + alert_unknown=1
+    A = pd.read_csv(next(p for p in ALERT_PATHS if p.exists()), encoding='utf-8-sig', parse_dates=['날짜']).rename(columns={'날짜': 'date', **ALERT_MAP})
+    n = len(D)
+    D = D.merge(A[['date'] + ALERT_FOUR], on='date', how='left')
+    assert len(D) == n
+    D['alert_unknown'] = D.alert_heat.isna().astype(int)
+    known = D[ALERT_FOUR].sum(axis=1, min_count=len(ALERT_FOUR))
+    D['any_alert'] = (known > 0).astype('Int64').where(known.notna())
+    for c in ALERT_FOUR:
+        D[c] = D[c].astype('Int64')
 
     cols = ['station', 'district', 'date', 'split', 'boarding', 'alighting', 'total', 'flag_one_side_zero', 'day_of_week', 'is_weekend', 'group',
             'score_commercial_leisure', 'score_residential', 'score_employment'] + MASKS + list(STEPS) + SEASONS + list(STATION_STEPS) + WEATHER + ALERTS

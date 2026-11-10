@@ -5,7 +5,9 @@
 - y = log(total), 하루 단위 빈틈 없음(asfreq D). config.MASK_COLS가 1인 날은 y=NaN(날짜 유지). 특보 관련 가리기는 하지 않음
 - 날씨 변수: heat_excess = max(0, feels_like_max-33) (NaN은 0), cold_excess = max(0, -12-tmin),
   rain = log(1+rain_mm), snow = snow_new_cm, 각각 1~3일 전 값(lag1~3, 앞쪽 빈칸 0)
-- 외생변수 X = STEP_COLS + (stage 3의 '있음' 버전만 SEASON_COLS) + 그 역의 STATION_STEP + 날씨 4개 + lag 12개.
+- 외생변수 X = STEP_COLS + (stage 3·4는 SEASON_COLS) + 그 역의 STATION_STEP + 모형별 변수:
+  B(ASOS만) = 날씨 4개 + lag 12개, A(특보만) = 특보 4개(alert_heat/cold/rain/snow) + lag 12개, C = 둘 다.
+  특보는 서울 전체 기준 0/1이라 9개 역이 같은 값, 2014-01-01~07(특보 여부 모름)은 y를 가리고(MASK_COLS의 alert_unknown) X는 0으로 둠
   학습 기간에 값이 전부 0인 열(fare_2025, climate_card 등)은 자동으로 빼고 목록을 기록
 - 변화율(%) = (exp(coef)-1)*100. 누적 효과 = lag0~3 계수의 합(선형 결합 t-검정으로 p-value 계산)
 - validation: 학습 구간에서 구한 계수를 고정(refit=False)하고, 2024년 각 날을 전날까지의 y로 하루 앞 예측.
@@ -13,10 +15,14 @@
 - 차수 후보 두 개: (1,0,1)(1,1,1,7)(config.ORDER, SEASONAL_ORDER, 확정안)과 (2,0,1)(1,1,1,7).
   날씨 계수 표는 확정안으로 만들고, 후보는 2024 예측과 AIC, Ljung-Box, 수렴 비교용
 
+참고: results/sarimax_B_*.csv(stage 2·3)는 alert_unknown 마스크를 넣기 전(2014-01-01~07을 가리지 않은) 설정으로 만든 결과이고,
+results/sarimax_ABC_*.csv(stage 4)는 alert_unknown 마스크를 포함한 설정으로 A·B·C를 모두 다시 적합한 결과이다.
+
 실행:
   python scripts/sarimax_asos.py --stage 1 [--station 역삼]   # 한 역만, summary와 표 출력
   python scripts/sarimax_asos.py --stage 2                    # 9개 역 × 후보 2개 -> results/
   python scripts/sarimax_asos.py --stage 3                    # summer_vacation 없음/있음 비교(확정 차수, 미수렴 재시도 포함) -> results/
+  python scripts/sarimax_asos.py --stage 4                    # 모형 A(특보만)·B(ASOS만)·C(특보+ASOS) 9개 역 비교 -> results/sarimax_ABC_*.csv
 """
 import os
 for _v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS'):
@@ -46,6 +52,8 @@ HEAT_BASE, COLD_BASE = 33.0, -12.0
 WEATHER = ['heat_excess', 'cold_excess', 'rain', 'snow']
 LAGS = [1, 2, 3]
 WEATHER_ALL = WEATHER + [f'{c}_lag{k}' for c in WEATHER for k in LAGS]
+ALERTS = list(C.ALERT_COLS)                                    # alert_heat, alert_cold, alert_rain, alert_snow
+ALERT_ALL = ALERTS + [f'{c}_lag{k}' for c in ALERTS for k in LAGS]
 TYPE_ORDER = ['Employment', 'Commercial & Leisure', 'Residential']
 CANDIDATES = [(C.ORDER, C.SEASONAL_ORDER), ((2, 0, 1), C.SEASONAL_ORDER)]      # 앞의 것이 확정안
 WORKERS = 6
@@ -63,21 +71,27 @@ def load():
     return d[d.date <= VALID_END]                              # 2025(test)는 여기서 버림
 
 
-def prepare(d, station, season=False):
-    """한 역의 y, X(2014~2024 전체)와 유형. 학습·검증 분리는 호출하는 쪽에서 한다."""
+def prepare(d, station, season=False, model='B'):
+    """한 역의 y, X(2014~2024 전체)와 유형. 학습·검증 분리는 호출하는 쪽에서 한다.
+    model: 'B' = ASOS 실측만, 'A' = 특보만, 'C' = 특보 + ASOS"""
     s = d[d.station == station].set_index('date').sort_index().asfreq('D')
     assert s.index.min() == START and s.index.max() == VALID_END and s.station.notna().all(), '날짜 빈틈'
     y = np.log(s.total)
     y[s[C.MASK_COLS].sum(axis=1) > 0] = np.nan                 # 가리기: 날짜는 유지, y만 NaN
-    w = pd.DataFrame({
-        'heat_excess': (s.feels_like_max - HEAT_BASE).clip(lower=0).fillna(0),
-        'cold_excess': (COLD_BASE - s.tmin).clip(lower=0).fillna(0),
-        'rain': np.log1p(s.rain_mm),
-        'snow': s.snow_new_cm,
-    }).fillna(0)
-    lag = {f'{c}_lag{k}': w[c].shift(k).fillna(0) for c in WEATHER for k in LAGS}
+    blocks = []
+    if model in ('B', 'C'):
+        w = pd.DataFrame({
+            'heat_excess': (s.feels_like_max - HEAT_BASE).clip(lower=0).fillna(0),
+            'cold_excess': (COLD_BASE - s.tmin).clip(lower=0).fillna(0),
+            'rain': np.log1p(s.rain_mm),
+            'snow': s.snow_new_cm,
+        }).fillna(0)
+        blocks += [w, pd.DataFrame({f'{c}_lag{k}': w[c].shift(k).fillna(0) for c in WEATHER for k in LAGS})]
+    if model in ('A', 'C'):
+        a = s[ALERTS].fillna(0)                                 # NaN은 2014-01-01~07뿐(y도 가려짐)
+        blocks += [a, pd.DataFrame({f'{c}_lag{k}': a[c].shift(k).fillna(0) for c in ALERTS for k in LAGS})]
     steps = list(C.STEP_COLS) + (list(C.SEASON_COLS) if season else []) + ([C.STATION_STEP[station]] if station in C.STATION_STEP else [])
-    X = pd.concat([s[steps], w, pd.DataFrame(lag)], axis=1).astype(float)
+    X = pd.concat([s[steps]] + blocks, axis=1).astype(float)
     return y, X, s.group.iloc[0], s.total
 
 
@@ -137,10 +151,10 @@ def coef_table(res, X):
 
 
 def cumulative(res, X):
-    """날씨 변수별 누적 효과: lag0~3 계수의 합과 p-value (합 = 0 검정)"""
+    """변수별 누적 효과: lag0~3 계수의 합과 p-value (합 = 0 검정). X에 있는 ASOS·특보 변수 모두"""
     names = list(res.param_names)
     rows = []
-    for w in WEATHER:
+    for w in [v for v in WEATHER + ALERTS if v in X.columns]:
         R = np.zeros(len(names))
         for c in [w] + [f'{w}_lag{k}' for k in LAGS]:
             R[names.index(c)] = 1.0
@@ -169,8 +183,8 @@ def validate(res, y, X, total):
             'naive7_RMSE': float(np.sqrt(((act[ok] - naive) ** 2).mean())), 'naive7_MAPE': float(((act[ok] - naive).abs() / act[ok]).mean() * 100)}
 
 
-def run_station(d, st, order, seasonal_order, season=False, retry=False):
-    y, X, grp, total = prepare(d, st, season)
+def run_station(d, st, order, seasonal_order, season=False, retry=False, model='B'):
+    y, X, grp, total = prepare(d, st, season, model)
     res, msgs, dropped, Xu, note = fit_station(y, X, order, seasonal_order, retry)
     lb, nlb = ljung_box(res, order, seasonal_order)
     return dict(station=st, group=grp, order=order, seasonal_order=seasonal_order, res=res, msgs=msgs, dropped=dropped, X=Xu, lb=lb, nlb=nlb, note=note,
@@ -198,10 +212,10 @@ _DATA = None
 
 def _task(args):
     global _DATA
-    st, order, seasonal, season, retry, tag = args
+    st, order, seasonal, season, retry, tag, model = args
     if _DATA is None:
         _DATA = load()
-    r = run_station(_DATA, st, order, seasonal, season, retry)
+    r = run_station(_DATA, st, order, seasonal, season, retry, model)
     res, v, lb = r['res'], r['valid'], r['lb']
     lab = label(order, seasonal)
     coefs = coef_table(res, r['X']).reset_index().rename(columns={'index': '변수', 'pct_change': '변화율'})
@@ -225,7 +239,7 @@ def stars(p):
 
 def stage2():
     RESULTS.mkdir(exist_ok=True)
-    jobs = [(st, o, so, False, False, None) for st in C.STATIONS for o, so in CANDIDATES]       # summer_vacation 없음, 재시도 없음(기존 결과 재현)
+    jobs = [(st, o, so, False, False, None, 'B') for st in C.STATIONS for o, so in CANDIDATES]       # summer_vacation 없음, 재시도 없음(기존 결과 재현)
     with ProcessPoolExecutor(max_workers=WORKERS) as ex:
         out = list(ex.map(_task, jobs))
     V = pd.DataFrame([m for m, _, _ in out])
@@ -280,7 +294,7 @@ def stage3():
     RESULTS.mkdir(exist_ok=True)
     versions = [('없음', False), ('있음', True)]
     o, so = CANDIDATES[0]
-    jobs = [(st, o, so, season, True, tag) for st in C.STATIONS for tag, season in versions]
+    jobs = [(st, o, so, season, True, tag, 'B') for st in C.STATIONS for tag, season in versions]
     with ProcessPoolExecutor(max_workers=WORKERS) as ex:
         out = list(ex.map(_task, jobs))
     V = pd.DataFrame([m for m, _, _ in out])
@@ -328,9 +342,55 @@ def stage3():
           [hs.loc[i, '역'] for i in emp.index if emp[i] < oth.min()])
 
 
+def stage4():
+    """모형 A(특보만) · B(ASOS만) · C(특보+ASOS): 확정 차수, summer_vacation 포함, 9개 역, 미수렴 재시도"""
+    RESULTS.mkdir(exist_ok=True)
+    o, so = CANDIDATES[0]
+    models = ['A', 'B', 'C']
+    jobs = [(st, o, so, True, True, m, m) for st in C.STATIONS for m in models]
+    with ProcessPoolExecutor(max_workers=WORKERS) as ex:
+        out = list(ex.map(_task, jobs))
+    V = pd.DataFrame([m for m, _, _ in out]).rename(columns={'버전': '모형'})
+    A = pd.concat([c for _, c, _ in out], ignore_index=True).rename(columns={'버전': '모형'})
+    K = pd.concat([k for _, _, k in out], ignore_index=True).rename(columns={'버전': '모형'})
+    V.to_csv(RESULTS / 'sarimax_ABC_compare.csv', index=False, encoding='utf-8-sig')
+    A.to_csv(RESULTS / 'sarimax_ABC_coefs.csv', index=False, encoding='utf-8-sig')
+    K.to_csv(RESULTS / 'sarimax_ABC_cumulative.csv', index=False, encoding='utf-8-sig')
+
+    pd.set_option('display.width', 250, 'display.max_columns', 40, 'display.max_colwidth', 60, 'display.float_format', lambda x: f'{x:,.4f}')
+    order_st = [x for g in TYPE_ORDER for x in C.STATIONS if V[V.역 == x].유형.iloc[0] == g]
+    print(f'[모형 A(특보만) / B(ASOS만) / C(특보+ASOS) — {MAIN}, summer_vacation 포함, 2024 롤링 예측]')
+    show = V.set_index(['역', '모형']).reindex(pd.MultiIndex.from_product([order_st, models], names=['역', '모형']))
+    print(show[['유형', 'RMSE', 'MAPE', 'AIC', 'LjungBox_p_lag7', 'LjungBox_p_lag14', '수렴', '반복', '경고수', '적합']].to_string())
+
+    M = V.groupby(['유형', '모형']).agg(MAPE평균=('MAPE', 'mean'), AIC평균=('AIC', 'mean'), RMSE평균=('RMSE', 'mean'), 수렴역수=('수렴', 'sum')).reindex(
+        pd.MultiIndex.from_product([TYPE_ORDER, models], names=['유형', '모형']))
+    M.to_csv(RESULTS / 'sarimax_ABC_metrics_by_type.csv', encoding='utf-8-sig')
+    print('\n[유형별 평균 지표]'); print(M.to_string())
+
+    # 누적 효과: 유형별 평균과 유의한 역 수 (ASOS는 B vs C, 특보는 A vs C)
+    G = K.groupby(['변수', '유형', '모형']).agg(평균_누적계수=('cum_coef', 'mean'), 양수_역수=('cum_coef', lambda v: int((v > 0).sum())),
+                                              유의_역수=('p', lambda v: int((v < 0.05).sum())), 역수=('cum_coef', 'size')).reset_index()
+    G['평균_변화율%'] = (np.exp(G.평균_누적계수) - 1) * 100
+    G.to_csv(RESULTS / 'sarimax_ABC_cumulative_by_type.csv', index=False, encoding='utf-8-sig')
+    for title, vars_, ms in [('ASOS 날씨 누적 효과 (lag0~3 합): B vs C', WEATHER, ['B', 'C']), ('특보 누적 효과 (lag0~3 합): A vs C', ALERTS, ['A', 'C'])]:
+        T = G[G.변수.isin(vars_) & G.모형.isin(ms)].pivot(index=['변수', '유형'], columns='모형', values=['평균_누적계수', '평균_변화율%', '유의_역수'])
+        T = T.reindex(pd.MultiIndex.from_product([vars_, TYPE_ORDER], names=['변수', '유형']))
+        print(f'\n[{title} — 유형별 평균, 유의(p<0.05) 역 수 /3]'); print(T.to_string())
+    # 특보: 역별 누적 효과(A, C)와 p-value, 그리고 lag0 계수
+    for v in ALERTS:
+        P = K[K.변수 == v].pivot(index='역', columns='모형', values=['cum_coef', 'p']).reindex(order_st)
+        P.insert(0, ('유형', ''), [V[V.역 == x].유형.iloc[0] for x in P.index])
+        print(f'\n[{v} 누적 효과, 역별 (A: 특보만, C: 특보+ASOS)]'); print(P.to_string())
+    L = A[A.변수.isin(ALERTS) & A.모형.isin(['A', 'C'])].groupby(['변수', '모형']).agg(
+        lag0_양수_역수=('coef', lambda v: int((v > 0).sum())), lag0_음수_역수=('coef', lambda v: int((v < 0).sum())), lag0_유의_역수=('p', lambda v: int((v < 0.05).sum()))).reindex(
+        pd.MultiIndex.from_product([ALERTS, ['A', 'C']], names=['변수', '모형']))
+    print('\n[특보 lag0 계수: 부호와 유의 역 수 /9]'); print(L.to_string())
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('--stage', type=int, choices=[1, 2, 3], required=True)
+    ap.add_argument('--stage', type=int, choices=[1, 2, 3, 4], required=True)
     ap.add_argument('--station', default='역삼')
     a = ap.parse_args()
-    {1: lambda: stage1(load(), a.station), 2: stage2, 3: stage3}[a.stage]()
+    {1: lambda: stage1(load(), a.station), 2: stage2, 3: stage3, 4: stage4}[a.stage]()

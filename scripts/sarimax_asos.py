@@ -5,7 +5,7 @@
 - y = log(total), 하루 단위 빈틈 없음(asfreq D). config.MASK_COLS가 1인 날은 y=NaN(날짜 유지). 특보 관련 가리기는 하지 않음
 - 날씨 변수: heat_excess = max(0, feels_like_max-33) (NaN은 0), cold_excess = max(0, -12-tmin),
   rain = log(1+rain_mm), snow = snow_new_cm, 각각 1~3일 전 값(lag1~3, 앞쪽 빈칸 0)
-- 외생변수 X = STEP_COLS + 그 역의 STATION_STEP + 날씨 4개 + lag 12개.
+- 외생변수 X = STEP_COLS + (stage 3의 '있음' 버전만 SEASON_COLS) + 그 역의 STATION_STEP + 날씨 4개 + lag 12개.
   학습 기간에 값이 전부 0인 열(fare_2025, climate_card 등)은 자동으로 빼고 목록을 기록
 - 변화율(%) = (exp(coef)-1)*100. 누적 효과 = lag0~3 계수의 합(선형 결합 t-검정으로 p-value 계산)
 - validation: 학습 구간에서 구한 계수를 고정(refit=False)하고, 2024년 각 날을 전날까지의 y로 하루 앞 예측.
@@ -16,6 +16,7 @@
 실행:
   python scripts/sarimax_asos.py --stage 1 [--station 역삼]   # 한 역만, summary와 표 출력
   python scripts/sarimax_asos.py --stage 2                    # 9개 역 × 후보 2개 -> results/
+  python scripts/sarimax_asos.py --stage 3                    # summer_vacation 없음/있음 비교(확정 차수, 미수렴 재시도 포함) -> results/
 """
 import os
 for _v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS'):
@@ -62,7 +63,7 @@ def load():
     return d[d.date <= VALID_END]                              # 2025(test)는 여기서 버림
 
 
-def prepare(d, station):
+def prepare(d, station, season=False):
     """한 역의 y, X(2014~2024 전체)와 유형. 학습·검증 분리는 호출하는 쪽에서 한다."""
     s = d[d.station == station].set_index('date').sort_index().asfreq('D')
     assert s.index.min() == START and s.index.max() == VALID_END and s.station.notna().all(), '날짜 빈틈'
@@ -75,21 +76,58 @@ def prepare(d, station):
         'snow': s.snow_new_cm,
     }).fillna(0)
     lag = {f'{c}_lag{k}': w[c].shift(k).fillna(0) for c in WEATHER for k in LAGS}
-    steps = list(C.STEP_COLS) + ([C.STATION_STEP[station]] if station in C.STATION_STEP else [])
+    steps = list(C.STEP_COLS) + (list(C.SEASON_COLS) if season else []) + ([C.STATION_STEP[station]] if station in C.STATION_STEP else [])
     X = pd.concat([s[steps], w, pd.DataFrame(lag)], axis=1).astype(float)
     return y, X, s.group.iloc[0], s.total
 
 
-def fit_station(y, X, order, seasonal_order):
-    """2014~2023으로 적합. 반환: 결과, 경고 목록, 뺀 열, 사용한 X"""
+def _fit(model, start=None, maxiter=None):
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter('always')
+        res = model.fit(start_params=start, disp=False, method=C.FIT_METHOD, maxiter=maxiter or C.FIT_MAXITER)
+    return res, sorted({f'{w.category.__name__}: {str(w.message)[:110]}' for w in caught})
+
+
+def _converged(res):
+    return bool(res.mle_retvals.get('converged'))
+
+
+def alt_start(model, ytr, Xtr):
+    """다른 초기값: 7일 차분한 y를 7일 차분한 X에 회귀한 계수 + 고정한 ARMA 초기값"""
+    dy, dX = ytr - ytr.shift(7), Xtr - Xtr.shift(7)
+    ok = dy.notna() & dX.notna().all(axis=1)
+    beta = np.linalg.lstsq(dX[ok].values, dy[ok].values, rcond=None)[0]
+    sig2 = float(np.var(dy[ok].values - dX[ok].values @ beta))
+    cols, out = list(Xtr.columns), []
+    for n in model.param_names:
+        if n in cols: out.append(beta[cols.index(n)])
+        elif n.startswith('ar.S'): out.append(0.1)
+        elif n.startswith('ma.S'): out.append(-0.8)
+        elif n == 'ar.L1': out.append(0.5)
+        elif n.startswith(('ar.', 'ma.')): out.append(0.0)
+        else: out.append(sig2)
+    return np.array(out)
+
+
+def fit_station(y, X, order, seasonal_order, retry=False):
+    """2014~2023으로 적합. 반환: 결과, 경고 목록, 뺀 열, 사용한 X, 적합 방법 메모.
+    retry=True면 기본 설정(lbfgs, maxiter=1000)이 수렴하지 않을 때 순서대로 다시 시도:
+    (1) 기본 결과의 계수에서 이어서 maxiter=5000, (2) 다른 초기값에서 maxiter=5000. 첫 수렴 결과를 쓰고, 없으면 loglike가 가장 큰 것을 씀"""
     ytr, Xtr = y[:TRAIN_END], X[:TRAIN_END]
     dropped = [c for c in X.columns if (Xtr[c] == 0).all()]
     X = X.drop(columns=dropped); Xtr = Xtr.drop(columns=dropped)
-    with warnings.catch_warnings(record=True) as caught:
-        warnings.simplefilter('always')
-        res = SARIMAX(ytr, exog=Xtr, order=order, seasonal_order=seasonal_order).fit(disp=False, method=C.FIT_METHOD, maxiter=C.FIT_MAXITER)
-    msgs = sorted({f'{w.category.__name__}: {str(w.message)[:110]}' for w in caught})
-    return res, msgs, dropped, X
+    model = SARIMAX(ytr, exog=Xtr, order=order, seasonal_order=seasonal_order)
+    res, msgs = _fit(model)
+    tried = [('기본(lbfgs, maxiter=1000)', res, msgs)]
+    if retry and not _converged(res):
+        r1, m1 = _fit(model, start=res.params.values, maxiter=5000)
+        tried.append(('기본 결과에서 이어서(maxiter=5000)', r1, m1))
+        if not _converged(r1):
+            r2, m2 = _fit(model, start=alt_start(model, ytr, Xtr), maxiter=5000)
+            tried.append(('다른 초기값(차분 회귀, maxiter=5000)', r2, m2))
+    best = next((t for t in tried if _converged(t[1])), None) or max(tried, key=lambda t: t[1].llf)
+    note = best[0] + ('' if _converged(best[1]) else ' [미수렴, loglike 최대 결과 사용]') + ('' if len(tried) == 1 else f' (시도 {len(tried)}회)')
+    return best[1], best[2], dropped, X, note
 
 
 def coef_table(res, X):
@@ -131,11 +169,11 @@ def validate(res, y, X, total):
             'naive7_RMSE': float(np.sqrt(((act[ok] - naive) ** 2).mean())), 'naive7_MAPE': float(((act[ok] - naive).abs() / act[ok]).mean() * 100)}
 
 
-def run_station(d, st, order, seasonal_order):
-    y, X, grp, total = prepare(d, st)
-    res, msgs, dropped, Xu = fit_station(y, X, order, seasonal_order)
+def run_station(d, st, order, seasonal_order, season=False, retry=False):
+    y, X, grp, total = prepare(d, st, season)
+    res, msgs, dropped, Xu, note = fit_station(y, X, order, seasonal_order, retry)
     lb, nlb = ljung_box(res, order, seasonal_order)
-    return dict(station=st, group=grp, order=order, seasonal_order=seasonal_order, res=res, msgs=msgs, dropped=dropped, X=Xu, lb=lb, nlb=nlb,
+    return dict(station=st, group=grp, order=order, seasonal_order=seasonal_order, res=res, msgs=msgs, dropped=dropped, X=Xu, lb=lb, nlb=nlb, note=note,
                 valid=validate(res, y, Xu, total), y=y)
 
 
@@ -160,20 +198,24 @@ _DATA = None
 
 def _task(args):
     global _DATA
-    st, order, seasonal = args
+    st, order, seasonal, season, retry, tag = args
     if _DATA is None:
         _DATA = load()
-    r = run_station(_DATA, st, order, seasonal)
+    r = run_station(_DATA, st, order, seasonal, season, retry)
     res, v, lb = r['res'], r['valid'], r['lb']
     lab = label(order, seasonal)
     coefs = coef_table(res, r['X']).reset_index().rename(columns={'index': '변수', 'pct_change': '변화율'})
     cum = cumulative(res, r['X'])
     for t in (coefs, cum):
+        if tag:
+            t.insert(0, '버전', tag)
         t.insert(0, '차수', lab); t.insert(0, '유형', r['group']); t.insert(0, '역', st)
     metrics = {'역': st, '유형': r['group'], '차수': lab, 'RMSE': v['RMSE'], 'MAPE': v['MAPE'], 'AIC': res.aic,
                'LjungBox_p_lag7': float(lb.lb_pvalue.iloc[0]), 'LjungBox_p_lag14': float(lb.lb_pvalue.iloc[1]),
                '수렴': bool(res.mle_retvals.get('converged')), '반복': int(res.mle_retvals.get('iterations')), '경고수': len(r['msgs']),
                '평가일수': v['n_days'], 'naive7_MAPE': v['naive7_MAPE'], '뺀 열': ','.join(r['dropped'])}
+    if tag:
+        metrics = {**{'역': st, '유형': r['group'], '버전': tag}, **{k: m for k, m in metrics.items() if k not in ('역', '유형')}, '적합': r['note']}
     return metrics, coefs, cum
 
 
@@ -183,7 +225,7 @@ def stars(p):
 
 def stage2():
     RESULTS.mkdir(exist_ok=True)
-    jobs = [(st, o, so) for st in C.STATIONS for o, so in CANDIDATES]
+    jobs = [(st, o, so, False, False, None) for st in C.STATIONS for o, so in CANDIDATES]       # summer_vacation 없음, 재시도 없음(기존 결과 재현)
     with ProcessPoolExecutor(max_workers=WORKERS) as ex:
         out = list(ex.map(_task, jobs))
     V = pd.DataFrame([m for m, _, _ in out])
@@ -233,9 +275,62 @@ def stage2():
     print(sn[['유형', 'coef', 'p', '변화율']].to_string())
 
 
+def stage3():
+    """summer_vacation 없음/있음 비교 (확정 차수). 미수렴이면 초기값·maxiter를 바꿔 다시 시도"""
+    RESULTS.mkdir(exist_ok=True)
+    versions = [('없음', False), ('있음', True)]
+    o, so = CANDIDATES[0]
+    jobs = [(st, o, so, season, True, tag) for st in C.STATIONS for tag, season in versions]
+    with ProcessPoolExecutor(max_workers=WORKERS) as ex:
+        out = list(ex.map(_task, jobs))
+    V = pd.DataFrame([m for m, _, _ in out])
+    A = pd.concat([c for _, c, _ in out], ignore_index=True)
+    K = pd.concat([k for _, _, k in out], ignore_index=True)
+    V.to_csv(RESULTS / 'sarimax_B_season_compare.csv', index=False, encoding='utf-8-sig')
+    A.to_csv(RESULTS / 'sarimax_B_season_coefs.csv', index=False, encoding='utf-8-sig')
+    K.to_csv(RESULTS / 'sarimax_B_season_cumulative.csv', index=False, encoding='utf-8-sig')
+
+    pd.set_option('display.width', 250, 'display.max_columns', 40, 'display.max_colwidth', 60, 'display.float_format', lambda x: f'{x:,.4f}')
+    order_st = [s_ for g in TYPE_ORDER for s_ in C.STATIONS if V[V.역 == s_].유형.iloc[0] == g]
+    print(f'[summer_vacation 없음/있음 — {MAIN}, 2024 롤링 예측]')
+    show = V.set_index(['역', '버전']).reindex(pd.MultiIndex.from_product([order_st, ['없음', '있음']], names=['역', '버전']))
+    print(show[['유형', 'RMSE', 'MAPE', 'AIC', 'LjungBox_p_lag7', 'LjungBox_p_lag14', '수렴', '반복', '경고수', '적합']].to_string())
+    print('\n[summer_vacation 계수]')
+    sv = A[(A.버전 == '있음') & (A.변수 == 'summer_vacation')].set_index('역').reindex(order_st)
+    print(sv[['유형', 'coef', 'p', '변화율']].to_string())
+
+    # 유형별 요약
+    rows = []
+    for ver in ['없음', '있음']:
+        for g in TYPE_ORDER:
+            v = V[(V.버전 == ver) & (V.유형 == g)]
+            row = {'버전': ver, '유형': g, '역수': len(v), 'MAPE평균': v.MAPE.mean(), 'AIC평균': v.AIC.mean(), 'RMSE평균': v.RMSE.mean()}
+            for w in WEATHER:
+                k = K[(K.버전 == ver) & (K.유형 == g) & (K.변수 == w)]
+                row[f'{w}_누적평균'] = k.cum_coef.mean(); row[f'{w}_변화율%'] = (np.exp(k.cum_coef.mean()) - 1) * 100
+                row[f'{w}_유의역수'] = int((k.p < 0.05).sum())
+            rows.append(row)
+    S = pd.DataFrame(rows)
+    S.to_csv(RESULTS / 'sarimax_B_season_by_type.csv', index=False, encoding='utf-8-sig')
+    print('\n[유형별 평균: MAPE, AIC와 날씨 누적 효과(lag0~3 합)]'); print(S.to_string(index=False))
+
+    # 폭염 효과 유형 비교
+    print('\n[폭염 누적 효과 (heat_excess lag0~3 합)  없음 → 있음]')
+    H = K[K.변수 == 'heat_excess'].pivot(index='역', columns='버전', values='cum_coef').reindex(order_st)
+    Hp = K[K.변수 == 'heat_excess'].pivot(index='역', columns='버전', values='p').reindex(order_st)
+    H.insert(0, '유형', [V[V.역 == x].유형.iloc[0] for x in H.index])
+    H['p(있음)'] = Hp['있음']
+    print(H.to_string())
+    hs = K[(K.버전 == '있음') & (K.변수 == 'heat_excess')]
+    emp, oth = hs[hs.유형 == 'Employment'].cum_coef, hs[hs.유형 != 'Employment'].cum_coef
+    print(f'\n있음 버전: Employment 평균 {emp.mean():+.4f} (범위 {emp.min():+.4f}~{emp.max():+.4f}) | 나머지 6개 역 평균 {oth.mean():+.4f} (범위 {oth.min():+.4f}~{oth.max():+.4f})')
+    print('Employment가 나머지 역 전부보다 더 큰(더 음수) 역:', [x for x in emp.index.map(lambda i: hs.loc[i, "역"])] if False else
+          [hs.loc[i, '역'] for i in emp.index if emp[i] < oth.min()])
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('--stage', type=int, choices=[1, 2], required=True)
+    ap.add_argument('--stage', type=int, choices=[1, 2, 3], required=True)
     ap.add_argument('--station', default='역삼')
     a = ap.parse_args()
-    stage1(load(), a.station) if a.stage == 1 else stage2()
+    {1: lambda: stage1(load(), a.station), 2: stage2, 3: stage3}[a.stage]()

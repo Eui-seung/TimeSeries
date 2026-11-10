@@ -6,8 +6,8 @@
 # 단독형 역 9개 (Employment / Commercial & Leisure / Residential 순)
 STATIONS = ['시청', '역삼', '선릉', '신촌', '혜화', '신사', '서울대입구', '수유', '연신내']
 
-# 가리기용 0/1 열 (전 역 공통; rally_cityhall은 시청역만 값이 1)
-MASK_COLS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall']
+# 가리기용 0/1 열 (전 역 공통; rally_cityhall은 시청역만 값이 1, alert_unknown은 특보 여부를 모르는 2014-01-01~07)
+MASK_COLS = ['holiday', 'labor_day', 'myeongjeol_pm2', 'covid', 'mers', 'strike', 'rally_cityhall', 'alert_unknown']
 
 # 계단 더미 (전 역 공통)
 STEP_COLS = ['fare_2015', 'fare_2023', 'fare_2025', 'climate_card']
@@ -26,6 +26,9 @@ TEST = 2025
 # SARIMA 차수: (p, d, q), (P, D, Q, s)
 ORDER = (1, 0, 1)
 SEASONAL_ORDER = (1, 1, 1, 7)
+
+# 기상특보 열 (서울 전체 기준, 모든 역 같은 값; 한파 / 폭염 / 호우 / 대설)
+ALERT_COLS = ['alert_heat', 'alert_cold', 'alert_rain', 'alert_snow']
 
 # 기상특보 발효 후 가리는 일수
 ALERT_MASK_AFTER_DAYS = 7

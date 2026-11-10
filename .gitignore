@@ -1,0 +1,11 @@
+rawdata/
+*.gz
+
+# virtual environments
+venv/
+.venv/
+env/
+
+# python / macOS
+__pycache__/
+.DS_Store

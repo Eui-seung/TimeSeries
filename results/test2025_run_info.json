@@ -1,0 +1,62 @@
+{
+  "run_datetime": "2026-11-13T16:34:19+09:00",
+  "test_year": 2025,
+  "run_count": 1,
+  "retrain": "2014-01-01 ~ 2024-12-31",
+  "evaluation": "2025-01-01 ~ 2025-12-31",
+  "fixed_settings": {
+    "ORDER": [
+      1,
+      0,
+      1
+    ],
+    "SEASONAL_ORDER": [
+      1,
+      1,
+      1,
+      7
+    ],
+    "MASK_COLS": [
+      "holiday",
+      "labor_day",
+      "myeongjeol_pm2",
+      "covid",
+      "mers",
+      "strike",
+      "rally_cityhall",
+      "alert_unknown"
+    ],
+    "STEP_COLS": [
+      "fare_2015",
+      "fare_2023",
+      "fare_2025",
+      "climate_card"
+    ],
+    "SEASON_COLS": [
+      "summer_vacation"
+    ],
+    "STATION_STEP": {
+      "서울대입구": "sillim_line",
+      "신사": "sinbundang_ext"
+    },
+    "ALERT_MASK_AFTER_DAYS": 7,
+    "SHOCK_K": 1,
+    "RECOVERY_M": 2,
+    "FIT_METHOD": "lbfgs",
+    "FIT_MAXITER": 1000
+  },
+  "models": [
+    "Naive",
+    "N",
+    "A",
+    "B_lag",
+    "B",
+    "C"
+  ],
+  "versions": {
+    "statsmodels": "0.14.6",
+    "pandas": "2.3.3",
+    "numpy": "2.3.5"
+  },
+  "note": "2025년 test는 이번 한 번만 실행했고, 2025 결과를 보고 설정을 바꾸지 않았다."
+}

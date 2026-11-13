@@ -12,7 +12,7 @@ for _p in os.environ.get('SUBWAY_EXTRA_PATH', '').split(os.pathsep):
     if _p:
         sys.path.append(_p)          # 뒤에 붙여서 기존 패키지가 우선
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]      # 저장소 루트 (legacy/scripts/ 기준)
 RAW = ROOT / 'rawdata'
 PROC = Path(os.environ.get('SUBWAY_PROC', ROOT / 'data' / 'processed'))
 INTERIM = Path(os.environ.get('SUBWAY_INTERIM', ROOT / 'data' / 'interim'))

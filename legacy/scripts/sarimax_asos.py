@@ -43,8 +43,8 @@ import pandas as pd
 from statsmodels.stats.diagnostic import acorr_ljungbox
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+ROOT = Path(__file__).resolve().parents[2]      # 저장소 루트 (legacy/scripts/ 기준)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # legacy/config.py
 import config as C                                             # noqa: E402
 
 DATA = ROOT / 'data' / 'processed' / 'model_input_9stations.csv'

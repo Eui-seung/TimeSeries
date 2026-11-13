@@ -10,5 +10,9 @@ env/
 __pycache__/
 .DS_Store
 
+# 기준선 모형의 큰 산출물 (스크립트로 다시 만들 수 있음)
+data/processed/model_input_9stations_noalert.csv
+results/*_daily.csv
+results/bayes/
 # notebooks 실행 중간 파일
 data/interim/

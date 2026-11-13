@@ -11,6 +11,7 @@
 **포함되지 않은 파일** (아래 표·본문에 이름이 나오지만 저장소에는 없음)
 - 용량 때문에 제외: `station_daily.csv.gz`, `station_date_hour.csv.gz`, `rawdata/`(지하철 승하차 원본·ASOS 원본), `data/interim/`(`raw_*.pkl`)
 - 그 밖에 올리지 않은 것: `group_daily.csv`, `station_map.csv`, `station_type.csv`, `weather_daily_check.csv` 등 `data/processed/`의 나머지 산출물과 `figures/`
+- 기준선 모형의 큰 산출물(용량 때문에 제외, 스크립트로 다시 만듦): `model_input_9stations_noalert.csv`(step10), `results/*_daily.csv`(일별 기준선), `results/bayes/`(베이지안 사후분포 표본)
 - **원본 데이터 출처**: 서울 지하철 승하차 인원은 서울 열린데이터광장 「서울교통공사_역별 일별 시간대별 승하차인원 정보」(https://data.seoul.go.kr/dataList/OA-12921/F/1/datasetView.do)와 공공데이터포털의 같은 자료(2024년까지, https://www.data.go.kr/data/15048032/fileData.do)이고(사용한 파일 목록은 `data_notes.md`의 '사용 파일'), 날씨는 기상청 기상자료개방포털의 종관기상관측(ASOS) 시간자료 서울(108)이다. 원본은 `rawdata/`와 `rawdata/asos/`에 두면 된다.
 - **다시 만드는 방법**: 원본을 `rawdata/`에 두고 `notebooks/01_preprocessing.ipynb`를 위에서 아래로 실행하면(기존 `legacy/scripts/`의 step1~9와 같은 로직) 제외된 파일과 `model_input_9stations.csv`를 다시 만들 수 있다.
 
@@ -132,3 +133,70 @@
 | 서울대입구 | 215 | 12 | 120 | 820 | 70 | 6 | 0 | 7 | 0 |
 | 수유 | 215 | 12 | 120 | 820 | 70 | 6 | 0 | 7 | 0 |
 | 연신내 | 215 | 12 | 120 | 820 | 70 | 6 | 0 | 7 | 0 |
+
+
+### 2026/11/11 baseline model data
+model_input_9stations.csv에서 weather_daily.csv기준으로 특보 발효 2주 데이터를 nan으로 masking
+
+- 파일: `model_input_9stations_noalert.csv` (코드 `scripts/step10_mask_alert.py`, step9 다음에 실행). 특보가 없을 때의 기준선 모형용.
+- 특보 날짜는 `weather_daily.csv`가 아니라 `model_input_9stations.csv`의 `any_alert`(팀 특보 파일 기준)를 씀.
+- `alert_window` 열 추가: 특보일(`any_alert`=1)부터 특보가 끝난 뒤 14일까지 = 1. 이 날은 `boarding`, `alighting`, `total`을 NaN으로 가림(날짜·나머지 열은 그대로).
+- `any_alert`가 빈 2014-01-01~07은 창을 만들지 않음(이 7일은 `alert_unknown`으로 이미 가려짐).
+- 가린 날: 역당 2,168 / 4,383일(49.5%), 9개 역 모두 같음. split별 train 1,739/3,652(47.6%), validation 192/366(52.5%), test 237/365(64.9%).
+
+주의할 점
+여름 폭염특보가 자주 반복돼서 7~9월은 대부분 가려짐. 여름 패턴이 거의 반영되지 않음.
+test가 65% 가려져서 평가에 쓸 수 있는 날이 약 128일뿐.
+
+### 2026/11/11 기준선 모형 (BSTS, 비교용 SARIMAX)
+특보가 없을 때의 기준선을 만들고, 특보 구간의 실제값과 비교해 특보 효과를 봄 (CausalImpact 방식).
+
+코드 (`scripts/`, 저장소 루트 `TimeSeries/`에서 실행)
+- `scripts/bsts_model.py`: 9개 역 × 특보 가리기 기간(7일, 14일) 적합. `--model sarimax`로 같은 설정의 SARIMAX
+- `scripts/bsts_report.py`: 두 모형의 train vs validation 비교표와 그림
+- `scripts/bsts_impact.py`: 특보 구간 전후 비교 그림 (실제 vs 기준선, 날마다의 효과, 누적 효과). `--station 신촌 --after 7 --date 2018-01-25`처럼 다른 구간도 그릴 수 있음
+- 실행 순서: `python scripts/bsts_model.py` → `python scripts/bsts_model.py --model sarimax` → `python scripts/bsts_report.py` → `python scripts/bsts_impact.py`
+
+설정
+- 데이터: `model_input_9stations.csv`. 특보 창은 스크립트 안에서 바로 계산함(14일 창은 위 `model_input_9stations_noalert.csv`와 같은 정의)
+- y = log(total). `config.MASK_COLS`가 1인 날과 특보 창(특보일 ~ 해제 후 7일 또는 14일)은 y=NaN(날짜 유지)
+- 기간: train 2014~2023 적합, validation 2024는 계수를 고정하고 하루 앞 예측, test 2025는 쓰지 않음
+- 통제 변수(두 모형 같음): 연간 계절성(푸리에 sin/cos 4쌍), `STEP_COLS`, `summer_vacation`, 역별 `STATION_STEP`, 비(`log(1+rain_mm)`, 당일 + 1~3일 전)
+- BSTS: statsmodels `UnobservedComponents`, local level + AR(1) + 주간 계절성(주기 7, 확률적). 최대우도 추정
+- SARIMAX: (1,0,1)(1,1,1,7) (`config.ORDER`, `SEASONAL_ORDER`)
+- 특보 구간의 기준선은 구간 시작 직전까지의 정보만으로 이어서 예측한 값. 누적 효과의 95% 구간은 기준선 경로 2,000번 시뮬레이션으로 구함
+
+모형을 만들며 바꾼 점
+- AR(1) 추가: 수준 성분만 있으면 하루짜리 충격(예: 역삼 2018-12-24)이 수준에 영구 반영돼 긴 가림 구간의 기준선이 15~45% 틀어짐
+- 연간 계절성을 상태가 아닌 회귀로 둠: 상태로 두면 첫해(2014)에 아직 추정이 안 돼 기준선이 크게 틀어짐
+- 날씨 변수는 학습 관측일 중 0이 아닌 날이 30일 미만이면 뺌. 극한 날씨인 날은 거의 다 특보 구간이라 가려져서 `heat_excess` 0일, `cold_excess` 1일(0.9℃), `snow` 약 20일(최대 4.3cm)만 남음. 이 계수를 −17.8℃(2018-01), 신적설 20cm(2024-11)에 곱하면 기준선이 실제의 2~3배로 튐. 결과적으로 남는 날씨 변수는 비뿐
+- 위 문제를 고치기 전에 보고했던 "상업 역에서 한파·대설에 5~15% 감소"는 이 계수 때문에 생긴 값이라 쓰지 않음
+
+결과 (`results/baseline_train_vs_valid.csv`, 평소 날 = 마지막 특보일로부터 15일 이상 지난 날)
+- 평소 날 validation MAPE: 1.5~5.6%. 시청이 가장 큼(BSTS 5.3~5.6%, SARIMAX 4.9%), 나머지는 1.5~3.9%
+- validation 오차가 train과 비슷하거나 더 작아 과적합 징후 없음
+- BSTS와 SARIMAX의 차이는 대부분 0.1%p 안쪽. 시청만 SARIMAX가 0.4~0.65%p 나음
+- 7일과 14일 가리기의 평소 날 정확도는 거의 같음. 14일 창에서 해제 후 8~14일의 차이는 train −0.1~+1.5%로 작아 7일이면 충분해 보임(7일이면 학습 관측일이 약 300일 더 많음)
+- 특보일 효과는 대부분 ±5% 안. 예시 구간(`results/figures/impact_*.png`, 7일 가리기) 5개 모두 95% 구간에 0이 들어감. 두 모형의 추정치가 거의 같음
+  - 신촌 2018-01 한파 −2.5%, 역삼 2018-01 한파 +2.7%, 신촌 2024-01 한파 −5.1~−5.8%, 신촌 2024-07~09 폭염·호우 −2.8~−3.6%, 신촌 2024-11 폭설 −1.3~−1.8%
+- 수렴: BSTS 수유 14일 하나만 미수렴(재시도 후에도), SARIMAX는 18개 모두 수렴
+
+결과 파일 (`results/`)
+- `bsts_*.csv`, `sarimaxbl_*.csv`: fitinfo(수렴·AIC·뺀 열), coef, accuracy, alert_effect, daily(일별 기준선·95% 구간·효과). 기존 `sarimax_*.csv`(sarimax_asos.py 결과)와는 별개
+- `baseline_train_vs_valid.csv`(두 모형), `bsts_train_vs_valid.csv`(BSTS만)
+- `figures/baseline_train_vs_valid_mape.png`, `figures/baseline_valid2024_series_7d.png`, `_14d.png`, `figures/impact_*.png`
+
+#### 베이지안 BSTS 추가 (2026-11-11)
+- 코드: `scripts/bsts_bayes.py`(실행) + `scripts/bsts_bayes.R`(MCMC). `python scripts/bsts_bayes.py` 후 `bsts_report.py`, `bsts_impact.py`를 다시 실행하면 세 모형(BSTS 최대우도, BSTS 베이지안, SARIMAX)이 같이 비교됨
+- 필요: R(CRAN 배포판, `C:\Program Files\R\R-4.6.2`) + `install.packages(c('bsts', 'CausalImpact'))`. 다른 경로면 환경변수 `RSCRIPT`로 지정. conda-forge의 Windows용 `r-bsts`는 반복 2번도 끝나지 않고 멈춰서 쓰지 않음
+- GPU는 쓰지 않음: R bsts는 CPU 전용이고, 날짜 순서대로 계산하는 구조라 GPU 이득이 작음. 모형 하나에 MCMC 약 2.5분, 18개를 6개씩 병렬로 약 10분
+- 모형: 최대우도 BSTS와 같은 구조(local level + AR(1) + 주간 계절성 + 같은 회귀 X). MCMC 5,000번, 앞 1,000번 버림, 10번마다 하나 → 사후분포 표본 400개
+- spike-and-slab: 통제 변수(푸리에·계단 더미·여름휴가)는 포함 확률 1로 고정, 날씨 변수(비 당일·1~3일 전)는 0.5에서 시작
+- 예측: 표본마다 그 모수로 칼만 필터를 돌려 하루 앞 예측분포를 구하고 섞음 → 모수 불확실성이 구간에 들어감. bsts는 시계열이 NA로 시작하면 오류가 나서 첫 관측일(2014-01-18)부터 넣음
+- 결과 파일: `results/bstsbayes_*.csv`(coef에 변수별 사후 포함 확률 `incl_prob`), 사후분포 표본은 `results/bayes/`
+
+결과
+- 날씨 변수 사후 포함 확률: 당일 비는 역삼을 뺀 8개 역에서 0.8~1.0, 비 1~3일 전은 모든 역에서 0~0.02 → 비 효과는 당일에만 있음. 역삼은 당일 비도 0
+- 평소 날 validation MAPE: 베이지안 2.8% vs 최대우도 BSTS 2.6%, SARIMAX 2.6% (역 평균). 점예측은 조금 나쁨
+- 95% 구간: 베이지안이 더 넓음(폭 중앙값 22% vs 17%). 구간 밖 날 비율이 train 3.0~3.3%, validation 2.1~2.4%로 목표 5%보다 적어 조금 보수적임. 최대우도 모형은 train 약 5%, validation 3.4~3.8%
+- 특보 구간 효과는 세 모형이 거의 같음 (예: 신촌 2024-01 한파 BSTS −5.1%, 베이지안 −4.8%, SARIMAX −5.8%). 예시 5개 모두 95% 구간에 0이 들어감

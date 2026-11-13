@@ -9,3 +9,6 @@ env/
 # python / macOS
 __pycache__/
 .DS_Store
+
+# notebooks 실행 중간 파일
+data/interim/

@@ -1,4 +1,6 @@
-# scripts/ — 지하철 전처리 코드
+# legacy/scripts/ — 지하철 전처리 코드 (예전 방식)
+
+> **이 코드는 `notebooks/`로 대체되었습니다.** 전처리는 `notebooks/01_preprocessing.ipynb`, SARIMAX 분석은 `notebooks/03_sarimax.ipynb`에 같은 로직이 들어 있습니다. 여기는 기록용으로 남겨 두었습니다.
 
 원본(`rawdata/`)에서 `data/processed/` 최종 파일까지 단계별로 다시 만드는 코드입니다. 프로젝트 루트에서 실행합니다.
 
@@ -19,17 +21,17 @@
 | `eda_weekly_pattern.py` | EDA: 한 해 전체 이용량 변화와 주별 반복성 (`--year 2024`) | `figures/fig_eda_weekly_pattern_{연도}.png`, `eda_weekly_pattern_{연도}.csv` |
 
 ```
-python scripts/step1_load_raw.py        # (연도 지정: --years 2014 2015)
-python scripts/step2_station_map.py
-python scripts/step3_apply_map.py
-python scripts/step4_classify.py
-python scripts/step5_daily_tables.py
-python scripts/step5_quality_checks.py
-python scripts/step6_figures.py
-python scripts/step7_add_test_year.py --year 2025                  # 점검만 하고, 새·변경된 역이 있으면 중단(종료 코드 2)
-python scripts/step7_add_test_year.py --year 2025 --accept-names   # 확인 후 진행
-python scripts/step8_weather_daily.py                              # 날씨 일별 (rawdata/asos 필요)
-python scripts/step9_model_input.py                                # 모델 입력 9개 역 (step8 먼저)
+python legacy/scripts/step1_load_raw.py        # (연도 지정: --years 2014 2015)
+python legacy/scripts/step2_station_map.py
+python legacy/scripts/step3_apply_map.py
+python legacy/scripts/step4_classify.py
+python legacy/scripts/step5_daily_tables.py
+python legacy/scripts/step5_quality_checks.py
+python legacy/scripts/step6_figures.py
+python legacy/scripts/step7_add_test_year.py --year 2025                  # 점검만 하고, 새·변경된 역이 있으면 중단(종료 코드 2)
+python legacy/scripts/step7_add_test_year.py --year 2025 --accept-names   # 확인 후 진행
+python legacy/scripts/step8_weather_daily.py                              # 날씨 일별 (rawdata/asos 필요)
+python legacy/scripts/step9_model_input.py                                # 모델 입력 9개 역 (step8 먼저)
 ```
 
 ## 테스트 연도 처리 규칙 (step7)

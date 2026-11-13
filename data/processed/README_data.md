@@ -5,14 +5,14 @@
 - `data/processed/model_input_9stations.csv` — 모델 입력(단독형 역 9개 × 2014~2025 일별)
 - `data/processed/weather_daily.csv` — 서울 일별 날씨(2014~2025)
 - `data/processed/README_data.md`, `data/processed/data_notes.md` — 이 문서와 전처리 기록
-- `scripts/` — 원본에서 위 파일까지 다시 만드는 코드(단계별 설명은 `scripts/README.md`)
-- `config.py` — 모델링 설정(역·열 이름·분할·SARIMA 차수)
+- `notebooks/` — 원본에서 위 파일까지 다시 만드는 코드와 분석(`01_preprocessing.ipynb`부터 순서대로). 예전 스크립트는 `legacy/scripts/`
+- `notebooks/00_settings.ipynb` — 모델링 설정(역·열 이름·분할·SARIMA 차수). 예전 `config.py`는 `legacy/config.py`
 
 **포함되지 않은 파일** (아래 표·본문에 이름이 나오지만 저장소에는 없음)
 - 용량 때문에 제외: `station_daily.csv.gz`, `station_date_hour.csv.gz`, `rawdata/`(지하철 승하차 원본·ASOS 원본), `data/interim/`(`raw_*.pkl`)
 - 그 밖에 올리지 않은 것: `group_daily.csv`, `station_map.csv`, `station_type.csv`, `weather_daily_check.csv` 등 `data/processed/`의 나머지 산출물과 `figures/`
 - **원본 데이터 출처**: 서울 지하철 승하차 인원은 서울 열린데이터광장 「서울교통공사_역별 일별 시간대별 승하차인원 정보」(https://data.seoul.go.kr/dataList/OA-12921/F/1/datasetView.do)와 공공데이터포털의 같은 자료(2024년까지, https://www.data.go.kr/data/15048032/fileData.do)이고(사용한 파일 목록은 `data_notes.md`의 '사용 파일'), 날씨는 기상청 기상자료개방포털의 종관기상관측(ASOS) 시간자료 서울(108)이다. 원본은 `rawdata/`와 `rawdata/asos/`에 두면 된다.
-- **다시 만드는 방법**: 원본을 `rawdata/`에 두고 `scripts/README.md`의 순서(step1~step7 → step8 → step9)대로 실행하면 제외된 파일과 `model_input_9stations.csv`를 다시 만들 수 있다.
+- **다시 만드는 방법**: 원본을 `rawdata/`에 두고 `notebooks/01_preprocessing.ipynb`를 위에서 아래로 실행하면(기존 `legacy/scripts/`의 step1~9와 같은 로직) 제외된 파일과 `model_input_9stations.csv`를 다시 만들 수 있다.
 
 서울교통공사 1~8호선 역별·일별·시간대별 승하차 인원(원본: `rawdata/`, 수정하지 않음)을 정리한 결과물입니다.
 상세한 결정·근거·이상 기록은 `data_notes.md`에 있습니다. 모든 CSV는 UTF-8(BOM), 열 이름은 영문, 역 이름 값은 한글입니다.
@@ -83,10 +83,10 @@
 - 연도별(각 3월)로 돌렸을 때 28개 역은 연도에 따라 유형이 바뀜(`yearly_station_types.csv`).
 - 급감일은 대부분 공휴일·명절이므로 이상값 처리 시 `is_public_holiday`, `is_seollal_chuseok`를 함께 볼 것.
 - 이전 한글 열 이름과의 대응은 `data_notes.md` 맨 아래 대응표.
-- 전처리 코드는 프로젝트의 `scripts/`에 있음(아래 '스크립트').
+- 전처리 코드는 `notebooks/01_preprocessing.ipynb`에 있음(예전 스크립트는 `legacy/scripts/`).
 
-## 스크립트 (`../../scripts/`)
-단계별 파이썬 파일(`step1_load_raw.py` … `step7_add_test_year.py`)과 공통 모듈(`common.py`), 실행 방법은 `scripts/README.md`에 있습니다.
+## 코드 (`../../notebooks/`, 예전 방식은 `../../legacy/scripts/`)
+전처리는 `notebooks/01_preprocessing.ipynb`에 단계별 셀로 들어 있습니다. 같은 로직의 예전 파이썬 파일(`step1_load_raw.py` … `step9_model_input.py`, `common.py`)과 실행 방법은 `legacy/scripts/README.md`에 있습니다.
 1~6단계를 별도 폴더에서 처음부터 실행해 이 폴더의 파일과 비교했고, 17개 파일이 값까지 동일했습니다.
 
 ## 2025년 추가 내용 (테스트 기간, 완료)

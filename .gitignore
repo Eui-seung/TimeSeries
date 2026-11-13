@@ -14,3 +14,5 @@ __pycache__/
 data/processed/model_input_9stations_noalert.csv
 results/*_daily.csv
 results/bayes/
+# notebooks 실행 중간 파일
+data/interim/

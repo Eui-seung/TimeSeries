@@ -1,0 +1,10 @@
+﻿역,유형,AIC,수렴,학습 y 관측일수,학습 일수,뺀 더미
+시청,Employment,-3597.850102817159,True,1656,3652,"fare_2025,climate_card"
+역삼,Employment,-5534.526658864712,True,1679,3652,"fare_2025,climate_card"
+선릉,Employment,-5509.76759300684,True,1679,3652,"fare_2025,climate_card"
+신촌,Commercial & Leisure,-5411.782762502398,True,1679,3652,"fare_2025,climate_card"
+혜화,Commercial & Leisure,-4407.462212943421,True,1679,3652,"fare_2025,climate_card"
+신사,Commercial & Leisure,-5397.113717644532,True,1679,3652,"fare_2025,climate_card"
+서울대입구,Residential,-5603.102446647583,True,1679,3652,"fare_2025,climate_card"
+수유,Residential,-7131.810638944845,True,1679,3652,"fare_2025,climate_card"
+연신내,Residential,-6854.959692967406,True,1679,3652,"fare_2025,climate_card"

@@ -1,249 +1,220 @@
-﻿이벤트번호,종류,시작일,종료일,지속일수,기간,시작불명,종료불명,코로나,메르스,공휴일,명절±2,근로자의날,파업,다른특보,계단더미±30일,시청집회(참고),기간경계걸침,제외단계,깨끗함,제외사유
-폭염-01,폭염,2014-07-09,2014-07-11,3,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-02,폭염,2014-07-30,2014-08-02,4,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-03,폭염,2015-07-10,2015-07-11,2,train,False,False,False,True,False,False,False,False,True,True,False,False,2,False,"코로나·메르스, 다른특보, 계단더미±30일"
-폭염-04,폭염,2015-08-06,2015-08-10,5,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-05,폭염,2015-08-17,2015-08-18,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-06,폭염,2016-05-20,2016-05-22,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-07,폭염,2016-07-08,2016-07-11,4,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-08,폭염,2016-07-19,2016-07-26,8,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-09,폭염,2016-07-31,2016-08-25,26,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-폭염-10,폭염,2017-06-16,2017-06-24,9,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-11,폭염,2017-07-05,2017-07-06,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-12,폭염,2017-07-12,2017-07-14,3,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-13,폭염,2017-07-19,2017-07-22,4,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-14,폭염,2017-07-25,2017-07-27,3,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-15,폭염,2017-08-01,2017-08-09,9,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-16,폭염,2017-08-11,2017-08-13,3,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-17,폭염,2018-06-24,2018-06-25,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-18,폭염,2018-07-12,2018-08-18,38,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-폭염-19,폭염,2018-08-20,2018-08-22,3,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-20,폭염,2019-05-24,2019-05-25,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-21,폭염,2019-06-25,2019-06-26,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-22,폭염,2019-07-04,2019-07-09,6,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-23,폭염,2019-07-18,2019-07-19,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-24,폭염,2019-07-22,2019-07-24,3,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-25,폭염,2019-07-29,2019-07-30,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-26,폭염,2019-08-02,2019-08-14,13,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-폭염-27,폭염,2019-08-19,2019-08-20,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-28,폭염,2020-06-09,2020-06-10,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-폭염-29,폭염,2020-06-21,2020-06-23,3,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-폭염-30,폭염,2020-08-12,2020-08-13,2,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-폭염-31,폭염,2020-08-16,2020-08-20,5,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-폭염-32,폭염,2020-08-23,2020-08-26,4,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-폭염-33,폭염,2021-07-10,2021-08-13,35,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-폭염-34,폭염,2022-06-25,2022-06-26,2,train,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-폭염-35,폭염,2022-07-01,2022-07-07,7,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-36,폭염,2022-07-09,2022-07-10,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-37,폭염,2022-07-25,2022-07-30,6,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-38,폭염,2022-08-04,2022-08-07,4,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-39,폭염,2022-08-14,2022-08-15,2,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-40,폭염,2022-08-20,2022-08-21,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-41,폭염,2023-06-18,2023-06-19,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-42,폭염,2023-06-30,2023-07-03,4,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-43,폭염,2023-07-19,2023-07-22,4,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-44,폭염,2023-07-25,2023-08-09,16,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-45,폭염,2023-08-13,2023-08-22,10,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-46,폭염,2023-09-05,2023-09-06,2,train,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-폭염-47,폭염,2024-06-19,2024-06-21,3,validation,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-폭염-48,폭염,2024-07-10,2024-07-15,6,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-49,폭염,2024-07-24,2024-08-31,39,validation,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-50,폭염,2024-09-08,2024-09-12,5,validation,False,False,False,False,True,True,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-51,폭염,2024-09-15,2024-09-19,5,validation,False,False,False,False,True,True,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-52,폭염,2025-06-30,2025-07-13,14,test,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-폭염-53,폭염,2025-07-21,2025-08-06,17,test,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-폭염-54,폭염,2025-08-15,2025-08-25,11,test,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-폭염-55,폭염,2025-08-27,2025-08-31,5,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-폭염-56,폭염,2025-09-05,2025-09-06,2,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-한파-01,한파,2014-01-08,2014-01-10,3,train,True,False,False,False,False,False,False,False,False,False,False,False,1,False,파일경계
-한파-02,한파,2014-12-01,2014-12-02,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-03,한파,2014-12-16,2014-12-18,3,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-04,한파,2015-03-09,2015-03-10,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-05,한파,2016-01-18,2016-01-20,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-06,한파,2016-01-22,2016-01-25,4,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-07,한파,2016-11-08,2016-11-09,2,train,False,False,False,False,False,False,False,False,False,False,True,False,0,True,
-한파-08,한파,2016-12-05,2016-12-06,2,train,False,False,False,False,False,False,False,False,False,False,True,False,0,True,
-한파-09,한파,2017-01-22,2017-01-24,3,train,False,False,False,False,True,True,False,False,False,False,True,False,3,False,공휴일·명절·근로자의날·파업
-한파-10,한파,2017-12-11,2017-12-14,4,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-한파-11,한파,2018-01-10,2018-01-12,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-12,한파,2018-01-22,2018-01-30,9,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-13,한파,2018-02-03,2018-02-07,5,train,False,False,False,False,False,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-14,한파,2018-02-10,2018-02-11,2,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-15,한파,2018-12-04,2018-12-05,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-16,한파,2018-12-07,2018-12-09,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-17,한파,2018-12-26,2018-12-30,5,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-18,한파,2019-02-07,2019-02-08,2,train,False,False,False,False,False,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-19,한파,2019-11-13,2019-11-14,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-20,한파,2019-11-18,2019-11-19,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-21,한파,2019-11-24,2019-11-25,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-22,한파,2019-12-11,2019-12-12,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-23,한파,2019-12-30,2019-12-31,2,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-24,한파,2020-02-04,2020-02-06,3,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-한파-25,한파,2020-12-13,2020-12-19,7,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-한파-26,한파,2020-12-29,2020-12-31,3,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-한파-27,한파,2021-01-05,2021-01-11,7,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-한파-28,한파,2021-01-15,2021-01-19,5,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-한파-29,한파,2021-01-28,2021-01-29,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-한파-30,한파,2021-02-01,2021-02-02,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-한파-31,한파,2021-02-15,2021-02-16,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-한파-32,한파,2021-02-22,2021-02-23,2,train,False,False,True,False,True,False,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-한파-33,한파,2021-10-16,2021-10-17,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-한파-34,한파,2021-12-16,2021-12-18,3,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-한파-35,한파,2021-12-24,2021-12-27,4,train,False,False,True,False,True,False,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-한파-36,한파,2021-12-30,2021-12-31,2,train,False,False,True,False,True,False,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-한파-37,한파,2022-02-15,2022-02-17,3,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-한파-38,한파,2022-11-29,2022-12-01,3,train,False,False,False,False,False,False,False,True,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-39,한파,2022-12-13,2022-12-14,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-한파-40,한파,2022-12-17,2022-12-19,3,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-한파-41,한파,2022-12-21,2022-12-25,5,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-한파-42,한파,2023-01-15,2023-01-16,2,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-43,한파,2023-01-23,2023-01-25,3,train,False,False,False,False,True,True,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-한파-44,한파,2023-01-27,2023-01-28,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-45,한파,2023-03-12,2023-03-13,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-46,한파,2023-11-06,2023-11-07,2,train,False,False,False,False,False,False,False,True,True,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보, 계단더미±30일"
-한파-47,한파,2023-11-23,2023-11-24,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-48,한파,2023-12-16,2023-12-18,3,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-한파-49,한파,2023-12-20,2023-12-23,4,train,False,False,False,False,True,False,False,False,True,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보, 계단더미±30일"
-한파-50,한파,2024-01-21,2024-01-24,4,validation,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-한파-51,한파,2025-01-08,2025-01-11,4,test,False,False,False,False,False,False,False,False,False,False,True,False,0,True,
-한파-52,한파,2025-02-03,2025-02-09,7,test,False,False,False,False,False,False,False,False,True,False,True,False,4,False,다른특보
-한파-53,한파,2025-11-02,2025-11-03,2,test,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-한파-54,한파,2025-12-02,2025-12-03,2,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-한파-55,한파,2025-12-25,2025-12-27,3,test,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-한파-56,한파,2025-12-31,2025-12-31,1,test,False,True,False,False,False,False,False,False,False,False,False,False,1,False,파일경계
-호우-01,호우,2014-06-22,2014-06-23,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-02,호우,2014-07-18,2014-07-18,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-03,호우,2014-07-22,2014-07-23,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-04,호우,2014-07-25,2014-07-25,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-05,호우,2014-08-21,2014-08-22,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-06,호우,2014-09-03,2014-09-03,1,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-07,호우,2015-06-20,2015-06-20,1,train,False,False,False,True,False,False,False,False,False,True,False,False,2,False,"코로나·메르스, 계단더미±30일"
-호우-08,호우,2015-07-11,2015-07-11,1,train,False,False,False,True,False,False,False,False,True,True,False,False,2,False,"코로나·메르스, 다른특보, 계단더미±30일"
-호우-09,호우,2015-08-16,2015-08-16,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-10,호우,2016-07-01,2016-07-01,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-11,호우,2016-07-04,2016-07-05,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-12,호우,2016-07-29,2016-07-29,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-13,호우,2016-10-02,2016-10-03,2,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-14,호우,2017-06-26,2017-06-26,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-15,호우,2017-07-02,2017-07-03,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-16,호우,2017-07-06,2017-07-06,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-17,호우,2017-07-09,2017-07-10,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-18,호우,2017-07-16,2017-07-16,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-19,호우,2017-07-23,2017-07-23,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-20,호우,2017-07-31,2017-07-31,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-21,호우,2017-08-10,2017-08-11,2,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-22,호우,2017-08-15,2017-08-15,1,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-23,호우,2017-08-20,2017-08-21,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-24,호우,2017-08-24,2017-08-24,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-25,호우,2018-05-17,2018-05-17,1,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-26,호우,2018-06-26,2018-06-26,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-27,호우,2018-06-30,2018-07-02,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-28,호우,2018-08-28,2018-08-30,3,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-29,호우,2018-10-06,2018-10-06,1,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-30,호우,2019-07-15,2019-07-15,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-31,호우,2019-07-26,2019-07-26,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-32,호우,2019-07-31,2019-08-01,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-33,호우,2019-08-29,2019-08-29,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-34,호우,2019-09-05,2019-09-05,1,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-35,호우,2019-09-10,2019-09-11,2,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-36,호우,2020-05-18,2020-05-18,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-37,호우,2020-06-30,2020-06-30,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-38,호우,2020-07-19,2020-07-19,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-39,호우,2020-07-23,2020-07-24,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-40,호우,2020-07-29,2020-07-29,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-41,호우,2020-07-31,2020-08-06,7,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-42,호우,2020-08-08,2020-08-11,4,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-호우-43,호우,2020-08-15,2020-08-15,1,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-호우-44,호우,2020-08-22,2020-08-22,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-45,호우,2020-08-28,2020-08-29,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-46,호우,2020-09-02,2020-09-03,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-47,호우,2020-11-19,2020-11-19,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-48,호우,2021-06-27,2021-06-27,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-49,호우,2021-06-29,2021-06-30,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-50,호우,2021-07-03,2021-07-04,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-51,호우,2021-07-15,2021-07-16,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-52,호우,2021-07-19,2021-07-19,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-53,호우,2021-08-01,2021-08-01,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-호우-54,호우,2021-08-21,2021-08-21,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-55,호우,2021-08-31,2021-09-01,2,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-호우-56,호우,2021-09-21,2021-09-22,2,train,False,False,True,False,True,True,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-호우-57,호우,2022-06-13,2022-06-13,1,train,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-호우-58,호우,2022-06-23,2022-06-24,2,train,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-호우-59,호우,2022-06-29,2022-06-30,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-60,호우,2022-07-06,2022-07-06,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-61,호우,2022-07-13,2022-07-13,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-62,호우,2022-07-16,2022-07-16,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-63,호우,2022-07-31,2022-08-01,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-64,호우,2022-08-03,2022-08-03,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-65,호우,2022-08-08,2022-08-10,3,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-66,호우,2022-08-19,2022-08-19,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-67,호우,2022-09-05,2022-09-06,2,train,False,False,False,False,True,True,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-68,호우,2022-10-03,2022-10-04,2,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-호우-69,호우,2023-06-29,2023-06-29,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-70,호우,2023-07-04,2023-07-05,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-71,호우,2023-07-09,2023-07-09,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-72,호우,2023-07-11,2023-07-11,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-73,호우,2023-07-13,2023-07-14,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-74,호우,2023-07-23,2023-07-23,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-75,호우,2023-07-26,2023-07-26,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-76,호우,2023-07-30,2023-07-30,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-77,호우,2023-08-06,2023-08-06,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-78,호우,2023-08-22,2023-08-23,2,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-79,호우,2023-09-05,2023-09-05,1,train,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-호우-80,호우,2023-11-06,2023-11-06,1,train,False,False,False,False,False,False,False,True,True,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보, 계단더미±30일"
-호우-81,호우,2024-07-02,2024-07-02,1,validation,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-82,호우,2024-07-09,2024-07-10,2,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-83,호우,2024-07-17,2024-07-18,2,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-84,호우,2024-07-25,2024-07-25,1,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-85,호우,2024-08-08,2024-08-08,1,validation,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-86,호우,2024-08-14,2024-08-14,1,validation,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-87,호우,2024-08-17,2024-08-18,2,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-88,호우,2024-08-21,2024-08-21,1,validation,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-89,호우,2024-09-12,2024-09-12,1,validation,False,False,False,False,True,True,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-90,호우,2024-09-20,2024-09-21,2,validation,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-91,호우,2025-05-16,2025-05-16,1,test,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-92,호우,2025-06-20,2025-06-20,1,test,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-호우-93,호우,2025-07-08,2025-07-08,1,test,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-호우-94,호우,2025-07-16,2025-07-19,4,test,False,False,False,False,False,False,False,False,True,True,False,False,4,False,"다른특보, 계단더미±30일"
-호우-95,호우,2025-08-13,2025-08-14,2,test,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-호우-96,호우,2025-08-30,2025-08-30,1,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-97,호우,2025-09-01,2025-09-01,1,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-98,호우,2025-09-04,2025-09-04,1,test,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-호우-99,호우,2025-09-13,2025-09-13,1,test,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-호우-100,호우,2025-09-17,2025-09-17,1,test,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-01,대설,2014-01-20,2014-01-20,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-02,대설,2014-02-08,2014-02-08,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-03,대설,2015-01-18,2015-01-18,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-04,대설,2015-12-03,2015-12-03,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-05,대설,2016-02-28,2016-02-28,1,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-대설-06,대설,2017-01-20,2017-01-20,1,train,False,False,False,False,True,True,False,False,True,False,True,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-대설-07,대설,2017-12-18,2017-12-18,1,train,False,False,False,False,True,False,False,False,False,False,False,False,3,False,공휴일·명절·근로자의날·파업
-대설-08,대설,2018-11-24,2018-11-24,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-09,대설,2019-02-19,2019-02-19,1,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-10,대설,2020-02-16,2020-02-16,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-대설-11,대설,2020-12-13,2020-12-13,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-대설-12,대설,2021-01-06,2021-01-07,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-대설-13,대설,2021-01-12,2021-01-12,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-대설-14,대설,2021-01-17,2021-01-18,2,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-대설-15,대설,2021-01-28,2021-01-28,1,train,False,False,True,False,False,False,False,False,True,False,False,False,2,False,"코로나·메르스, 다른특보"
-대설-16,대설,2021-02-03,2021-02-04,2,train,False,False,True,False,True,True,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-대설-17,대설,2021-12-18,2021-12-18,1,train,False,False,True,False,True,False,False,False,True,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업, 다른특보"
-대설-18,대설,2022-01-19,2022-01-19,1,train,False,False,True,False,False,False,False,False,False,False,False,False,2,False,코로나·메르스
-대설-19,대설,2022-01-31,2022-02-01,2,train,False,False,True,False,True,True,False,False,False,False,False,False,2,False,"코로나·메르스, 공휴일·명절·근로자의날·파업"
-대설-20,대설,2022-12-15,2022-12-15,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-대설-21,대설,2022-12-21,2022-12-21,1,train,False,False,False,False,True,False,False,False,True,False,False,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-대설-22,대설,2023-01-06,2023-01-07,2,train,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-23,대설,2023-01-26,2023-01-26,1,train,False,False,False,False,False,False,False,False,True,False,False,False,4,False,다른특보
-대설-24,대설,2023-12-24,2023-12-25,2,train,False,False,False,False,True,False,False,False,False,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 계단더미±30일"
-대설-25,대설,2023-12-30,2023-12-30,1,train,False,False,False,False,True,False,False,False,False,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 계단더미±30일"
-대설-26,대설,2024-01-06,2024-01-06,1,validation,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-대설-27,대설,2024-01-09,2024-01-09,1,validation,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-대설-28,대설,2024-02-05,2024-02-06,2,validation,False,False,False,False,True,True,False,False,False,True,False,False,3,False,"공휴일·명절·근로자의날·파업, 계단더미±30일"
-대설-29,대설,2024-02-21,2024-02-22,2,validation,False,False,False,False,False,False,False,False,False,True,False,False,5,False,계단더미±30일
-대설-30,대설,2024-11-27,2024-11-28,2,validation,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
-대설-31,대설,2025-01-05,2025-01-05,1,test,False,False,False,False,False,False,False,False,True,False,True,False,4,False,다른특보
-대설-32,대설,2025-01-27,2025-01-28,2,test,False,False,False,False,True,True,False,False,True,False,True,False,3,False,"공휴일·명절·근로자의날·파업, 다른특보"
-대설-33,대설,2025-02-06,2025-02-07,2,test,False,False,False,False,False,False,False,False,True,False,True,False,4,False,다른특보
-대설-34,대설,2025-03-04,2025-03-04,1,test,False,False,False,False,False,False,False,False,False,False,True,False,0,True,
-대설-35,대설,2025-03-17,2025-03-18,2,test,False,False,False,False,False,False,False,False,False,False,True,False,0,True,
-대설-36,대설,2025-12-04,2025-12-04,1,test,False,False,False,False,False,False,False,False,False,False,False,False,0,True,
+﻿이벤트번호,분류,종류,시작일,종료일,지속일수,기간,구성구간수,시작불명,종료불명,코로나,메르스,공휴일,명절±2,근로자의날,파업,계단더미±30일,시청집회(참고),기간경계걸침,해제후7일내_다른종류특보,민감도단일,다음특보시작일,다음특보종류,long_event,제외단계,깨끗함,구성구간,제외사유
+단일-한파-01,단일,한파,2014-01-08,2014-01-10,3,train,1,True,False,False,False,False,False,False,False,False,False,False,False,True,,,False,1,False,한파 2014-01-08~2014-01-10,파일경계
+단일-대설-01,단일,대설,2014-01-20,2014-01-20,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2014-01-20~2014-01-20,
+단일-대설-02,단일,대설,2014-02-08,2014-02-08,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2014-02-08~2014-02-08,
+단일-호우-01,단일,호우,2014-06-22,2014-06-23,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2014-06-22~2014-06-23,
+단일-폭염-01,단일,폭염,2014-07-09,2014-07-11,3,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2014-07-18,호우,False,0,True,폭염 2014-07-09~2014-07-11,
+단일-호우-02,단일,호우,2014-07-18,2014-07-18,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2014-07-22,호우,False,0,True,호우 2014-07-18~2014-07-18,
+단일-호우-03,단일,호우,2014-07-22,2014-07-23,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2014-07-25,호우,False,0,True,호우 2014-07-22~2014-07-23,
+단일-호우-04,단일,호우,2014-07-25,2014-07-25,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2014-07-30,폭염,False,0,True,호우 2014-07-25~2014-07-25,
+단일-폭염-02,단일,폭염,2014-07-30,2014-08-02,4,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2014-07-30~2014-08-02,
+단일-호우-05,단일,호우,2014-08-21,2014-08-22,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2014-08-21~2014-08-22,
+단일-호우-06,단일,호우,2014-09-03,2014-09-03,1,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,,,False,3,False,호우 2014-09-03~2014-09-03,공휴일·명절·근로자의날·파업
+단일-한파-02,단일,한파,2014-12-01,2014-12-02,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2014-12-01~2014-12-02,
+단일-한파-03,단일,한파,2014-12-16,2014-12-18,3,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,한파 2014-12-16~2014-12-18,공휴일·명절·근로자의날·파업
+단일-대설-03,단일,대설,2015-01-18,2015-01-18,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2015-01-18~2015-01-18,
+단일-한파-04,단일,한파,2015-03-09,2015-03-10,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2015-03-09~2015-03-10,
+단일-호우-07,단일,호우,2015-06-20,2015-06-20,1,train,1,False,False,False,True,False,False,False,False,True,False,False,False,True,,,False,2,False,호우 2015-06-20~2015-06-20,"코로나·메르스, 계단더미±30일"
+복합-폭염+호우-01,복합,폭염+호우,2015-07-10,2015-07-11,2,train,2,False,False,False,True,False,False,False,False,True,False,False,False,False,,,False,2,False,폭염 2015-07-10~2015-07-11; 호우 2015-07-11~2015-07-11,"코로나·메르스, 계단더미±30일"
+단일-폭염-03,단일,폭염,2015-08-06,2015-08-10,5,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2015-08-16,호우,False,3,False,폭염 2015-08-06~2015-08-10,공휴일·명절·근로자의날·파업
+단일-호우-08,단일,호우,2015-08-16,2015-08-16,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2015-08-17,폭염,False,0,True,호우 2015-08-16~2015-08-16,
+단일-폭염-04,단일,폭염,2015-08-17,2015-08-18,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2015-08-17~2015-08-18,
+단일-대설-04,단일,대설,2015-12-03,2015-12-03,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2015-12-03~2015-12-03,
+단일-한파-05,단일,한파,2016-01-18,2016-01-20,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2016-01-22,한파,False,0,True,한파 2016-01-18~2016-01-20,
+단일-한파-06,단일,한파,2016-01-22,2016-01-25,4,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2016-01-22~2016-01-25,
+단일-대설-05,단일,대설,2016-02-28,2016-02-28,1,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,대설 2016-02-28~2016-02-28,공휴일·명절·근로자의날·파업
+단일-폭염-05,단일,폭염,2016-05-20,2016-05-22,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2016-05-20~2016-05-22,
+단일-호우-09,단일,호우,2016-07-01,2016-07-01,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2016-07-04,호우,False,0,True,호우 2016-07-01~2016-07-01,
+단일-호우-10,단일,호우,2016-07-04,2016-07-05,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2016-07-08,폭염,False,0,True,호우 2016-07-04~2016-07-05,
+단일-폭염-06,단일,폭염,2016-07-08,2016-07-11,4,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2016-07-08~2016-07-11,
+단일-폭염-07,단일,폭염,2016-07-19,2016-07-26,8,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2016-07-29,호우,False,0,True,폭염 2016-07-19~2016-07-26,
+단일-호우-11,단일,호우,2016-07-29,2016-07-29,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2016-07-31,폭염,False,0,True,호우 2016-07-29~2016-07-29,
+단일-폭염-08,단일,폭염,2016-07-31,2016-08-25,26,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,True,3,False,폭염 2016-07-31~2016-08-25,공휴일·명절·근로자의날·파업
+단일-호우-12,단일,호우,2016-10-02,2016-10-03,2,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,호우 2016-10-02~2016-10-03,공휴일·명절·근로자의날·파업
+단일-한파-07,단일,한파,2016-11-08,2016-11-09,2,train,1,False,False,False,False,False,False,False,False,False,True,False,False,True,,,False,0,True,한파 2016-11-08~2016-11-09,
+단일-한파-08,단일,한파,2016-12-05,2016-12-06,2,train,1,False,False,False,False,False,False,False,False,False,True,False,False,True,,,False,0,True,한파 2016-12-05~2016-12-06,
+단일-대설-06,단일,대설,2017-01-20,2017-01-20,1,train,1,False,False,False,False,True,True,False,False,False,True,False,True,False,2017-01-22,한파,False,3,False,대설 2017-01-20~2017-01-20,공휴일·명절·근로자의날·파업
+단일-한파-09,단일,한파,2017-01-22,2017-01-24,3,train,1,False,False,False,False,True,True,False,False,False,True,False,False,True,,,False,3,False,한파 2017-01-22~2017-01-24,공휴일·명절·근로자의날·파업
+단일-폭염-09,단일,폭염,2017-06-16,2017-06-24,9,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-06-26,호우,False,0,True,폭염 2017-06-16~2017-06-24,
+단일-호우-13,단일,호우,2017-06-26,2017-06-26,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2017-07-02,호우,False,0,True,호우 2017-06-26~2017-06-26,
+단일-호우-14,단일,호우,2017-07-02,2017-07-03,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-05,폭염,False,0,True,호우 2017-07-02~2017-07-03,
+복합-폭염+호우-02,복합,폭염+호우,2017-07-05,2017-07-06,2,train,2,False,False,False,False,False,False,False,False,False,False,False,False,False,2017-07-09,호우,False,0,True,폭염 2017-07-05~2017-07-06; 호우 2017-07-06~2017-07-06,
+단일-호우-15,단일,호우,2017-07-09,2017-07-10,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-12,폭염,False,0,True,호우 2017-07-09~2017-07-10,
+단일-폭염-10,단일,폭염,2017-07-12,2017-07-14,3,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-16,호우,False,0,True,폭염 2017-07-12~2017-07-14,
+단일-호우-16,단일,호우,2017-07-16,2017-07-16,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-19,폭염,False,0,True,호우 2017-07-16~2017-07-16,
+단일-폭염-11,단일,폭염,2017-07-19,2017-07-22,4,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-23,호우,False,0,True,폭염 2017-07-19~2017-07-22,
+단일-호우-17,단일,호우,2017-07-23,2017-07-23,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-25,폭염,False,0,True,호우 2017-07-23~2017-07-23,
+단일-폭염-12,단일,폭염,2017-07-25,2017-07-27,3,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-07-31,호우,False,0,True,폭염 2017-07-25~2017-07-27,
+단일-호우-18,단일,호우,2017-07-31,2017-07-31,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-08-01,폭염,False,0,True,호우 2017-07-31~2017-07-31,
+단일-폭염-13,단일,폭염,2017-08-01,2017-08-09,9,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2017-08-10,호우,False,3,False,폭염 2017-08-01~2017-08-09,공휴일·명절·근로자의날·파업
+복합-폭염+호우-03,복합,폭염+호우,2017-08-10,2017-08-13,4,train,2,False,False,False,False,True,False,False,False,False,False,False,False,False,2017-08-15,호우,False,3,False,호우 2017-08-10~2017-08-11; 폭염 2017-08-11~2017-08-13,공휴일·명절·근로자의날·파업
+단일-호우-19,단일,호우,2017-08-15,2017-08-15,1,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,2017-08-20,호우,False,3,False,호우 2017-08-15~2017-08-15,공휴일·명절·근로자의날·파업
+단일-호우-20,단일,호우,2017-08-20,2017-08-21,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2017-08-24,호우,False,0,True,호우 2017-08-20~2017-08-21,
+단일-호우-21,단일,호우,2017-08-24,2017-08-24,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2017-08-24~2017-08-24,
+단일-한파-10,단일,한파,2017-12-11,2017-12-14,4,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2017-12-18,대설,False,0,True,한파 2017-12-11~2017-12-14,
+단일-대설-07,단일,대설,2017-12-18,2017-12-18,1,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,대설 2017-12-18~2017-12-18,공휴일·명절·근로자의날·파업
+단일-한파-11,단일,한파,2018-01-10,2018-01-12,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2018-01-10~2018-01-12,
+단일-한파-12,단일,한파,2018-01-22,2018-01-30,9,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2018-02-03,한파,False,0,True,한파 2018-01-22~2018-01-30,
+단일-한파-13,단일,한파,2018-02-03,2018-02-07,5,train,1,False,False,False,False,False,True,False,False,False,False,False,False,True,2018-02-10,한파,False,3,False,한파 2018-02-03~2018-02-07,공휴일·명절·근로자의날·파업
+단일-한파-14,단일,한파,2018-02-10,2018-02-11,2,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,,,False,3,False,한파 2018-02-10~2018-02-11,공휴일·명절·근로자의날·파업
+단일-호우-22,단일,호우,2018-05-17,2018-05-17,1,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,호우 2018-05-17~2018-05-17,공휴일·명절·근로자의날·파업
+단일-폭염-14,단일,폭염,2018-06-24,2018-06-25,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2018-06-26,호우,False,0,True,폭염 2018-06-24~2018-06-25,
+단일-호우-23,단일,호우,2018-06-26,2018-06-26,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2018-06-30,호우,False,0,True,호우 2018-06-26~2018-06-26,
+단일-호우-24,단일,호우,2018-06-30,2018-07-02,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2018-06-30~2018-07-02,
+단일-폭염-15,단일,폭염,2018-07-12,2018-08-18,38,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,2018-08-20,폭염,True,3,False,폭염 2018-07-12~2018-08-18,공휴일·명절·근로자의날·파업
+단일-폭염-16,단일,폭염,2018-08-20,2018-08-22,3,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2018-08-28,호우,False,0,True,폭염 2018-08-20~2018-08-22,
+단일-호우-25,단일,호우,2018-08-28,2018-08-30,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2018-08-28~2018-08-30,
+단일-호우-26,단일,호우,2018-10-06,2018-10-06,1,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,호우 2018-10-06~2018-10-06,공휴일·명절·근로자의날·파업
+단일-대설-08,단일,대설,2018-11-24,2018-11-24,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2018-11-24~2018-11-24,
+단일-한파-15,단일,한파,2018-12-04,2018-12-05,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2018-12-07,한파,False,0,True,한파 2018-12-04~2018-12-05,
+단일-한파-16,단일,한파,2018-12-07,2018-12-09,3,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2018-12-07~2018-12-09,
+단일-한파-17,단일,한파,2018-12-26,2018-12-30,5,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,한파 2018-12-26~2018-12-30,공휴일·명절·근로자의날·파업
+단일-한파-18,단일,한파,2019-02-07,2019-02-08,2,train,1,False,False,False,False,False,True,False,False,False,False,False,False,True,,,False,3,False,한파 2019-02-07~2019-02-08,공휴일·명절·근로자의날·파업
+단일-대설-09,단일,대설,2019-02-19,2019-02-19,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2019-02-19~2019-02-19,
+단일-폭염-17,단일,폭염,2019-05-24,2019-05-25,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2019-05-24~2019-05-25,
+단일-폭염-18,단일,폭염,2019-06-25,2019-06-26,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2019-06-25~2019-06-26,
+단일-폭염-19,단일,폭염,2019-07-04,2019-07-09,6,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-15,호우,False,0,True,폭염 2019-07-04~2019-07-09,
+단일-호우-27,단일,호우,2019-07-15,2019-07-15,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-18,폭염,False,0,True,호우 2019-07-15~2019-07-15,
+단일-폭염-20,단일,폭염,2019-07-18,2019-07-19,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-22,폭염,False,0,True,폭염 2019-07-18~2019-07-19,
+단일-폭염-21,단일,폭염,2019-07-22,2019-07-24,3,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-26,호우,False,0,True,폭염 2019-07-22~2019-07-24,
+단일-호우-28,단일,호우,2019-07-26,2019-07-26,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-29,폭염,False,0,True,호우 2019-07-26~2019-07-26,
+단일-폭염-22,단일,폭염,2019-07-29,2019-07-30,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-07-31,호우,False,0,True,폭염 2019-07-29~2019-07-30,
+단일-호우-29,단일,호우,2019-07-31,2019-08-01,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2019-08-02,폭염,False,0,True,호우 2019-07-31~2019-08-01,
+단일-폭염-23,단일,폭염,2019-08-02,2019-08-14,13,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,2019-08-19,폭염,False,3,False,폭염 2019-08-02~2019-08-14,공휴일·명절·근로자의날·파업
+단일-폭염-24,단일,폭염,2019-08-19,2019-08-20,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2019-08-19~2019-08-20,
+단일-호우-30,단일,호우,2019-08-29,2019-08-29,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2019-09-05,호우,False,0,True,호우 2019-08-29~2019-08-29,
+단일-호우-31,단일,호우,2019-09-05,2019-09-05,1,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,2019-09-10,호우,False,3,False,호우 2019-09-05~2019-09-05,공휴일·명절·근로자의날·파업
+단일-호우-32,단일,호우,2019-09-10,2019-09-11,2,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,,,False,3,False,호우 2019-09-10~2019-09-11,공휴일·명절·근로자의날·파업
+단일-한파-19,단일,한파,2019-11-13,2019-11-14,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2019-11-18,한파,False,0,True,한파 2019-11-13~2019-11-14,
+단일-한파-20,단일,한파,2019-11-18,2019-11-19,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2019-11-24,한파,False,0,True,한파 2019-11-18~2019-11-19,
+단일-한파-21,단일,한파,2019-11-24,2019-11-25,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2019-11-24~2019-11-25,
+단일-한파-22,단일,한파,2019-12-11,2019-12-12,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2019-12-11~2019-12-12,
+단일-한파-23,단일,한파,2019-12-30,2019-12-31,2,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,한파 2019-12-30~2019-12-31,공휴일·명절·근로자의날·파업
+단일-한파-24,단일,한파,2020-02-04,2020-02-06,3,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,한파 2020-02-04~2020-02-06,코로나·메르스
+단일-대설-10,단일,대설,2020-02-16,2020-02-16,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,대설 2020-02-16~2020-02-16,코로나·메르스
+단일-호우-33,단일,호우,2020-05-18,2020-05-18,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2020-05-18~2020-05-18,코로나·메르스
+단일-폭염-25,단일,폭염,2020-06-09,2020-06-10,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,폭염 2020-06-09~2020-06-10,코로나·메르스
+단일-폭염-26,단일,폭염,2020-06-21,2020-06-23,3,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2020-06-30,호우,False,2,False,폭염 2020-06-21~2020-06-23,코로나·메르스
+단일-호우-34,단일,호우,2020-06-30,2020-06-30,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2020-06-30~2020-06-30,코로나·메르스
+단일-호우-35,단일,호우,2020-07-19,2020-07-19,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2020-07-23,호우,False,2,False,호우 2020-07-19~2020-07-19,코로나·메르스
+단일-호우-36,단일,호우,2020-07-23,2020-07-24,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2020-07-29,호우,False,2,False,호우 2020-07-23~2020-07-24,코로나·메르스
+단일-호우-37,단일,호우,2020-07-29,2020-07-29,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2020-07-31,호우,False,2,False,호우 2020-07-29~2020-07-29,코로나·메르스
+단일-호우-38,단일,호우,2020-07-31,2020-08-06,7,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2020-08-08,호우,False,2,False,호우 2020-07-31~2020-08-06,코로나·메르스
+단일-호우-39,단일,호우,2020-08-08,2020-08-11,4,train,1,False,False,True,False,True,False,False,False,False,False,False,True,False,2020-08-12,폭염,False,2,False,호우 2020-08-08~2020-08-11,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-폭염-27,단일,폭염,2020-08-12,2020-08-13,2,train,1,False,False,True,False,True,False,False,False,False,False,False,True,False,2020-08-15,호우,False,2,False,폭염 2020-08-12~2020-08-13,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-호우-40,단일,호우,2020-08-15,2020-08-15,1,train,1,False,False,True,False,True,False,False,False,False,False,False,True,False,2020-08-16,폭염,False,2,False,호우 2020-08-15~2020-08-15,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-폭염-28,단일,폭염,2020-08-16,2020-08-20,5,train,1,False,False,True,False,True,False,False,False,False,False,False,True,False,2020-08-22,호우,False,2,False,폭염 2020-08-16~2020-08-20,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-호우-41,단일,호우,2020-08-22,2020-08-22,1,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2020-08-23,폭염,False,2,False,호우 2020-08-22~2020-08-22,코로나·메르스
+단일-폭염-29,단일,폭염,2020-08-23,2020-08-26,4,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2020-08-28,호우,False,2,False,폭염 2020-08-23~2020-08-26,코로나·메르스
+단일-호우-42,단일,호우,2020-08-28,2020-08-29,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2020-09-02,호우,False,2,False,호우 2020-08-28~2020-08-29,코로나·메르스
+단일-호우-43,단일,호우,2020-09-02,2020-09-03,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2020-09-02~2020-09-03,코로나·메르스
+단일-호우-44,단일,호우,2020-11-19,2020-11-19,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2020-11-19~2020-11-19,코로나·메르스
+복합-한파+대설-01,복합,한파+대설,2020-12-13,2020-12-19,7,train,2,False,False,True,False,True,False,False,False,False,False,False,False,False,,,False,2,False,대설 2020-12-13~2020-12-13; 한파 2020-12-13~2020-12-19,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-25,단일,한파,2020-12-29,2020-12-31,3,train,1,False,False,True,False,True,False,False,False,False,False,False,True,False,2021-01-05,한파,False,2,False,한파 2020-12-29~2020-12-31,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+복합-한파+대설-02,복합,한파+대설,2021-01-05,2021-01-11,7,train,2,False,False,True,False,False,False,False,False,False,False,False,False,False,2021-01-12,대설,False,2,False,한파 2021-01-05~2021-01-11; 대설 2021-01-06~2021-01-07,코로나·메르스
+단일-대설-11,단일,대설,2021-01-12,2021-01-12,1,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2021-01-15,한파,False,2,False,대설 2021-01-12~2021-01-12,코로나·메르스
+복합-한파+대설-03,복합,한파+대설,2021-01-15,2021-01-19,5,train,2,False,False,True,False,False,False,False,False,False,False,False,False,False,,,False,2,False,한파 2021-01-15~2021-01-19; 대설 2021-01-17~2021-01-18,코로나·메르스
+복합-한파+대설-04,복합,한파+대설,2021-01-28,2021-01-29,2,train,2,False,False,True,False,False,False,False,False,False,False,False,False,False,2021-02-01,한파,False,2,False,대설 2021-01-28~2021-01-28; 한파 2021-01-28~2021-01-29,코로나·메르스
+단일-한파-26,단일,한파,2021-02-01,2021-02-02,2,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2021-02-03,대설,False,2,False,한파 2021-02-01~2021-02-02,코로나·메르스
+단일-대설-12,단일,대설,2021-02-03,2021-02-04,2,train,1,False,False,True,False,True,True,False,False,False,False,False,False,True,,,False,2,False,대설 2021-02-03~2021-02-04,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-27,단일,한파,2021-02-15,2021-02-16,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2021-02-22,한파,False,2,False,한파 2021-02-15~2021-02-16,코로나·메르스
+단일-한파-28,단일,한파,2021-02-22,2021-02-23,2,train,1,False,False,True,False,True,False,False,False,False,False,False,False,True,,,False,2,False,한파 2021-02-22~2021-02-23,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-호우-45,단일,호우,2021-06-27,2021-06-27,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2021-06-29,호우,False,2,False,호우 2021-06-27~2021-06-27,코로나·메르스
+단일-호우-46,단일,호우,2021-06-29,2021-06-30,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,2021-07-03,호우,False,2,False,호우 2021-06-29~2021-06-30,코로나·메르스
+단일-호우-47,단일,호우,2021-07-03,2021-07-04,2,train,1,False,False,True,False,False,False,False,False,False,False,False,True,False,2021-07-10,폭염,False,2,False,호우 2021-07-03~2021-07-04,코로나·메르스
+복합-폭염+호우-04,복합,폭염+호우,2021-07-10,2021-08-13,35,train,4,False,False,True,False,True,False,False,False,False,False,False,False,False,,,True,2,False,폭염 2021-07-10~2021-08-13; 호우 2021-07-15~2021-07-16; 호우 2021-07-19~2021-07-19; 호우 2021-08-01~2021-08-01,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-호우-48,단일,호우,2021-08-21,2021-08-21,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2021-08-21~2021-08-21,코로나·메르스
+단일-호우-49,단일,호우,2021-08-31,2021-09-01,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,호우 2021-08-31~2021-09-01,코로나·메르스
+단일-호우-50,단일,호우,2021-09-21,2021-09-22,2,train,1,False,False,True,False,True,True,False,False,False,False,False,False,True,,,False,2,False,호우 2021-09-21~2021-09-22,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-29,단일,한파,2021-10-16,2021-10-17,2,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,한파 2021-10-16~2021-10-17,코로나·메르스
+복합-한파+대설-05,복합,한파+대설,2021-12-16,2021-12-18,3,train,2,False,False,True,False,True,False,False,False,False,False,False,False,False,2021-12-24,한파,False,2,False,한파 2021-12-16~2021-12-18; 대설 2021-12-18~2021-12-18,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-30,단일,한파,2021-12-24,2021-12-27,4,train,1,False,False,True,False,True,False,False,False,False,False,False,False,True,2021-12-30,한파,False,2,False,한파 2021-12-24~2021-12-27,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-31,단일,한파,2021-12-30,2021-12-31,2,train,1,False,False,True,False,True,False,False,False,False,False,False,False,True,,,False,2,False,한파 2021-12-30~2021-12-31,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-대설-13,단일,대설,2022-01-19,2022-01-19,1,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,대설 2022-01-19~2022-01-19,코로나·메르스
+단일-대설-14,단일,대설,2022-01-31,2022-02-01,2,train,1,False,False,True,False,True,True,False,False,False,False,False,False,True,,,False,2,False,대설 2022-01-31~2022-02-01,"코로나·메르스, 공휴일·명절·근로자의날·파업"
+단일-한파-32,단일,한파,2022-02-15,2022-02-17,3,train,1,False,False,True,False,False,False,False,False,False,False,False,False,True,,,False,2,False,한파 2022-02-15~2022-02-17,코로나·메르스
+단일-호우-51,단일,호우,2022-06-13,2022-06-13,1,train,1,False,False,False,False,False,False,False,False,True,False,False,False,True,,,False,4,False,호우 2022-06-13~2022-06-13,계단더미±30일
+단일-호우-52,단일,호우,2022-06-23,2022-06-24,2,train,1,False,False,False,False,False,False,False,False,True,False,False,True,False,2022-06-25,폭염,False,4,False,호우 2022-06-23~2022-06-24,계단더미±30일
+단일-폭염-30,단일,폭염,2022-06-25,2022-06-26,2,train,1,False,False,False,False,False,False,False,False,True,False,False,True,False,2022-06-29,호우,False,4,False,폭염 2022-06-25~2022-06-26,계단더미±30일
+단일-호우-53,단일,호우,2022-06-29,2022-06-30,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-07-01,폭염,False,0,True,호우 2022-06-29~2022-06-30,
+복합-폭염+호우-05,복합,폭염+호우,2022-07-01,2022-07-07,7,train,2,False,False,False,False,False,False,False,False,False,False,False,False,False,2022-07-09,폭염,False,0,True,폭염 2022-07-01~2022-07-07; 호우 2022-07-06~2022-07-06,
+단일-폭염-31,단일,폭염,2022-07-09,2022-07-10,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-07-13,호우,False,0,True,폭염 2022-07-09~2022-07-10,
+단일-호우-54,단일,호우,2022-07-13,2022-07-13,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2022-07-16,호우,False,0,True,호우 2022-07-13~2022-07-13,
+단일-호우-55,단일,호우,2022-07-16,2022-07-16,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2022-07-16~2022-07-16,
+단일-폭염-32,단일,폭염,2022-07-25,2022-07-30,6,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-07-31,호우,False,0,True,폭염 2022-07-25~2022-07-30,
+단일-호우-56,단일,호우,2022-07-31,2022-08-01,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-08-03,호우,False,0,True,호우 2022-07-31~2022-08-01,
+단일-호우-57,단일,호우,2022-08-03,2022-08-03,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-08-04,폭염,False,0,True,호우 2022-08-03~2022-08-03,
+단일-폭염-33,단일,폭염,2022-08-04,2022-08-07,4,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-08-08,호우,False,0,True,폭염 2022-08-04~2022-08-07,
+단일-호우-58,단일,호우,2022-08-08,2022-08-10,3,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2022-08-14,폭염,False,3,False,호우 2022-08-08~2022-08-10,공휴일·명절·근로자의날·파업
+단일-폭염-34,단일,폭염,2022-08-14,2022-08-15,2,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2022-08-19,호우,False,3,False,폭염 2022-08-14~2022-08-15,공휴일·명절·근로자의날·파업
+단일-호우-59,단일,호우,2022-08-19,2022-08-19,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-08-20,폭염,False,0,True,호우 2022-08-19~2022-08-19,
+단일-폭염-35,단일,폭염,2022-08-20,2022-08-21,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2022-08-20~2022-08-21,
+단일-호우-60,단일,호우,2022-09-05,2022-09-06,2,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,,,False,3,False,호우 2022-09-05~2022-09-06,공휴일·명절·근로자의날·파업
+단일-호우-61,단일,호우,2022-10-03,2022-10-04,2,train,1,False,False,False,False,True,False,False,False,False,False,False,False,True,,,False,3,False,호우 2022-10-03~2022-10-04,공휴일·명절·근로자의날·파업
+단일-한파-33,단일,한파,2022-11-29,2022-12-01,3,train,1,False,False,False,False,False,False,False,True,False,False,False,False,True,,,False,3,False,한파 2022-11-29~2022-12-01,공휴일·명절·근로자의날·파업
+단일-한파-34,단일,한파,2022-12-13,2022-12-14,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-12-15,대설,False,0,True,한파 2022-12-13~2022-12-14,
+단일-대설-15,단일,대설,2022-12-15,2022-12-15,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2022-12-17,한파,False,0,True,대설 2022-12-15~2022-12-15,
+단일-한파-35,단일,한파,2022-12-17,2022-12-19,3,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2022-12-21,한파+대설,False,3,False,한파 2022-12-17~2022-12-19,공휴일·명절·근로자의날·파업
+복합-한파+대설-06,복합,한파+대설,2022-12-21,2022-12-25,5,train,2,False,False,False,False,True,False,False,False,False,False,False,False,False,,,False,3,False,대설 2022-12-21~2022-12-21; 한파 2022-12-21~2022-12-25,공휴일·명절·근로자의날·파업
+단일-대설-16,단일,대설,2023-01-06,2023-01-07,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2023-01-06~2023-01-07,
+단일-한파-36,단일,한파,2023-01-15,2023-01-16,2,train,1,False,False,False,False,True,True,False,False,False,False,False,False,True,2023-01-23,한파,False,3,False,한파 2023-01-15~2023-01-16,공휴일·명절·근로자의날·파업
+단일-한파-37,단일,한파,2023-01-23,2023-01-25,3,train,1,False,False,False,False,True,True,False,False,False,False,False,True,False,2023-01-26,대설,False,3,False,한파 2023-01-23~2023-01-25,공휴일·명절·근로자의날·파업
+단일-대설-17,단일,대설,2023-01-26,2023-01-26,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-01-27,한파,False,0,True,대설 2023-01-26~2023-01-26,
+단일-한파-38,단일,한파,2023-01-27,2023-01-28,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2023-01-27~2023-01-28,
+단일-한파-39,단일,한파,2023-03-12,2023-03-13,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2023-03-12~2023-03-13,
+단일-폭염-36,단일,폭염,2023-06-18,2023-06-19,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2023-06-18~2023-06-19,
+단일-호우-62,단일,호우,2023-06-29,2023-06-29,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-06-30,폭염,False,0,True,호우 2023-06-29~2023-06-29,
+단일-폭염-37,단일,폭염,2023-06-30,2023-07-03,4,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-07-04,호우,False,0,True,폭염 2023-06-30~2023-07-03,
+단일-호우-63,단일,호우,2023-07-04,2023-07-05,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2023-07-09,호우,False,0,True,호우 2023-07-04~2023-07-05,
+단일-호우-64,단일,호우,2023-07-09,2023-07-09,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2023-07-11,호우,False,0,True,호우 2023-07-09~2023-07-09,
+단일-호우-65,단일,호우,2023-07-11,2023-07-11,1,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2023-07-13,호우,False,0,True,호우 2023-07-11~2023-07-11,
+단일-호우-66,단일,호우,2023-07-13,2023-07-14,2,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-07-19,폭염,False,0,True,호우 2023-07-13~2023-07-14,
+단일-폭염-38,단일,폭염,2023-07-19,2023-07-22,4,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-07-23,호우,False,0,True,폭염 2023-07-19~2023-07-22,
+단일-호우-67,단일,호우,2023-07-23,2023-07-23,1,train,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2023-07-25,폭염,False,0,True,호우 2023-07-23~2023-07-23,
+복합-폭염+호우-06,복합,폭염+호우,2023-07-25,2023-08-09,16,train,4,False,False,False,False,True,False,False,False,False,False,False,False,False,2023-08-13,폭염,True,3,False,폭염 2023-07-25~2023-08-09; 호우 2023-07-26~2023-07-26; 호우 2023-07-30~2023-07-30; 호우 2023-08-06~2023-08-06,공휴일·명절·근로자의날·파업
+복합-폭염+호우-07,복합,폭염+호우,2023-08-13,2023-08-23,11,train,2,False,False,False,False,True,False,False,False,False,False,False,False,False,,,False,3,False,폭염 2023-08-13~2023-08-22; 호우 2023-08-22~2023-08-23,공휴일·명절·근로자의날·파업
+복합-폭염+호우-08,복합,폭염+호우,2023-09-05,2023-09-06,2,train,2,False,False,False,False,False,False,False,False,True,False,False,False,False,,,False,4,False,호우 2023-09-05~2023-09-05; 폭염 2023-09-05~2023-09-06,계단더미±30일
+복합-한파+호우-01,복합,한파+호우,2023-11-06,2023-11-07,2,train,2,False,False,False,False,False,False,False,True,True,False,False,False,False,,,False,3,False,호우 2023-11-06~2023-11-06; 한파 2023-11-06~2023-11-07,"공휴일·명절·근로자의날·파업, 계단더미±30일"
+단일-한파-40,단일,한파,2023-11-23,2023-11-24,2,train,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2023-11-23~2023-11-24,
+단일-한파-41,단일,한파,2023-12-16,2023-12-18,3,train,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2023-12-20,한파,False,3,False,한파 2023-12-16~2023-12-18,공휴일·명절·근로자의날·파업
+단일-한파-42,단일,한파,2023-12-20,2023-12-23,4,train,1,False,False,False,False,True,False,False,False,True,False,False,True,False,2023-12-24,대설,False,3,False,한파 2023-12-20~2023-12-23,"공휴일·명절·근로자의날·파업, 계단더미±30일"
+단일-대설-18,단일,대설,2023-12-24,2023-12-25,2,train,1,False,False,False,False,True,False,False,False,True,False,False,False,True,2023-12-30,대설,False,3,False,대설 2023-12-24~2023-12-25,"공휴일·명절·근로자의날·파업, 계단더미±30일"
+단일-대설-19,단일,대설,2023-12-30,2023-12-30,1,train,1,False,False,False,False,True,False,False,False,True,False,False,False,True,2024-01-06,대설,False,3,False,대설 2023-12-30~2023-12-30,"공휴일·명절·근로자의날·파업, 계단더미±30일"
+단일-대설-20,단일,대설,2024-01-06,2024-01-06,1,validation,1,False,False,False,False,False,False,False,False,True,False,False,False,True,2024-01-09,대설,False,4,False,대설 2024-01-06~2024-01-06,계단더미±30일
+단일-대설-21,단일,대설,2024-01-09,2024-01-09,1,validation,1,False,False,False,False,False,False,False,False,True,False,False,False,True,,,False,4,False,대설 2024-01-09~2024-01-09,계단더미±30일
+단일-한파-43,단일,한파,2024-01-21,2024-01-24,4,validation,1,False,False,False,False,False,False,False,False,True,False,False,False,True,,,False,4,False,한파 2024-01-21~2024-01-24,계단더미±30일
+단일-대설-22,단일,대설,2024-02-05,2024-02-06,2,validation,1,False,False,False,False,True,True,False,False,True,False,False,False,True,,,False,3,False,대설 2024-02-05~2024-02-06,"공휴일·명절·근로자의날·파업, 계단더미±30일"
+단일-대설-23,단일,대설,2024-02-21,2024-02-22,2,validation,1,False,False,False,False,False,False,False,False,True,False,False,False,True,,,False,4,False,대설 2024-02-21~2024-02-22,계단더미±30일
+단일-폭염-39,단일,폭염,2024-06-19,2024-06-21,3,validation,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,폭염 2024-06-19~2024-06-21,
+단일-호우-68,단일,호우,2024-07-02,2024-07-02,1,validation,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2024-07-09,호우,False,0,True,호우 2024-07-02~2024-07-02,
+복합-폭염+호우-09,복합,폭염+호우,2024-07-09,2024-07-15,7,validation,2,False,False,False,False,False,False,False,False,False,False,False,False,False,2024-07-17,호우,False,0,True,호우 2024-07-09~2024-07-10; 폭염 2024-07-10~2024-07-15,
+단일-호우-69,단일,호우,2024-07-17,2024-07-18,2,validation,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2024-07-24,폭염,False,0,True,호우 2024-07-17~2024-07-18,
+복합-폭염+호우-10,복합,폭염+호우,2024-07-24,2024-08-31,39,validation,6,False,False,False,False,True,False,False,False,False,False,False,False,False,,,True,3,False,폭염 2024-07-24~2024-08-31; 호우 2024-07-25~2024-07-25; 호우 2024-08-08~2024-08-08; 호우 2024-08-14~2024-08-14; 호우 2024-08-17~2024-08-18; 호우 2024-08-21~2024-08-21,공휴일·명절·근로자의날·파업
+복합-폭염+호우-11,복합,폭염+호우,2024-09-08,2024-09-12,5,validation,2,False,False,False,False,True,True,False,False,False,False,False,False,False,2024-09-15,폭염,False,3,False,폭염 2024-09-08~2024-09-12; 호우 2024-09-12~2024-09-12,공휴일·명절·근로자의날·파업
+단일-폭염-40,단일,폭염,2024-09-15,2024-09-19,5,validation,1,False,False,False,False,True,True,False,False,False,False,False,True,False,2024-09-20,호우,False,3,False,폭염 2024-09-15~2024-09-19,공휴일·명절·근로자의날·파업
+단일-호우-70,단일,호우,2024-09-20,2024-09-21,2,validation,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2024-09-20~2024-09-21,
+단일-대설-24,단일,대설,2024-11-27,2024-11-28,2,validation,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2024-11-27~2024-11-28,
+단일-대설-25,단일,대설,2025-01-05,2025-01-05,1,test,1,False,False,False,False,False,False,False,False,False,True,False,True,False,2025-01-08,한파,False,0,True,대설 2025-01-05~2025-01-05,
+단일-한파-44,단일,한파,2025-01-08,2025-01-11,4,test,1,False,False,False,False,False,False,False,False,False,True,False,False,True,,,False,0,True,한파 2025-01-08~2025-01-11,
+단일-대설-26,단일,대설,2025-01-27,2025-01-28,2,test,1,False,False,False,False,True,True,False,False,False,True,False,True,False,2025-02-03,한파,False,3,False,대설 2025-01-27~2025-01-28,공휴일·명절·근로자의날·파업
+복합-한파+대설-07,복합,한파+대설,2025-02-03,2025-02-09,7,test,2,False,False,False,False,False,False,False,False,False,True,False,False,False,,,False,0,True,한파 2025-02-03~2025-02-09; 대설 2025-02-06~2025-02-07,
+단일-대설-27,단일,대설,2025-03-04,2025-03-04,1,test,1,False,False,False,False,False,False,False,False,False,True,False,False,True,,,False,0,True,대설 2025-03-04~2025-03-04,
+단일-대설-28,단일,대설,2025-03-17,2025-03-18,2,test,1,False,False,False,False,False,False,False,False,False,True,False,False,True,,,False,0,True,대설 2025-03-17~2025-03-18,
+단일-호우-71,단일,호우,2025-05-16,2025-05-16,1,test,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2025-05-16~2025-05-16,
+단일-호우-72,단일,호우,2025-06-20,2025-06-20,1,test,1,False,False,False,False,False,False,False,False,True,False,False,False,True,,,False,4,False,호우 2025-06-20~2025-06-20,계단더미±30일
+복합-폭염+호우-12,복합,폭염+호우,2025-06-30,2025-07-13,14,test,2,False,False,False,False,False,False,False,False,True,False,False,False,False,2025-07-16,호우,False,4,False,폭염 2025-06-30~2025-07-13; 호우 2025-07-08~2025-07-08,계단더미±30일
+단일-호우-73,단일,호우,2025-07-16,2025-07-19,4,test,1,False,False,False,False,False,False,False,False,True,False,False,True,False,2025-07-21,폭염,False,4,False,호우 2025-07-16~2025-07-19,계단더미±30일
+단일-폭염-41,단일,폭염,2025-07-21,2025-08-06,17,test,1,False,False,False,False,False,False,False,False,True,False,False,True,False,2025-08-13,호우,True,4,False,폭염 2025-07-21~2025-08-06,계단더미±30일
+단일-호우-74,단일,호우,2025-08-13,2025-08-14,2,test,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2025-08-15,폭염,False,3,False,호우 2025-08-13~2025-08-14,공휴일·명절·근로자의날·파업
+단일-폭염-42,단일,폭염,2025-08-15,2025-08-25,11,test,1,False,False,False,False,True,False,False,False,False,False,False,True,False,2025-08-27,폭염,False,3,False,폭염 2025-08-15~2025-08-25,공휴일·명절·근로자의날·파업
+복합-폭염+호우-13,복합,폭염+호우,2025-08-27,2025-08-31,5,test,2,False,False,False,False,False,False,False,False,False,False,False,False,False,2025-09-01,호우,False,0,True,폭염 2025-08-27~2025-08-31; 호우 2025-08-30~2025-08-30,
+단일-호우-75,단일,호우,2025-09-01,2025-09-01,1,test,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2025-09-04,호우,False,0,True,호우 2025-09-01~2025-09-01,
+단일-호우-76,단일,호우,2025-09-04,2025-09-04,1,test,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2025-09-05,폭염,False,0,True,호우 2025-09-04~2025-09-04,
+단일-폭염-43,단일,폭염,2025-09-05,2025-09-06,2,test,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2025-09-13,호우,False,0,True,폭염 2025-09-05~2025-09-06,
+단일-호우-77,단일,호우,2025-09-13,2025-09-13,1,test,1,False,False,False,False,False,False,False,False,False,False,False,False,True,2025-09-17,호우,False,0,True,호우 2025-09-13~2025-09-13,
+단일-호우-78,단일,호우,2025-09-17,2025-09-17,1,test,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,호우 2025-09-17~2025-09-17,
+단일-한파-45,단일,한파,2025-11-02,2025-11-03,2,test,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,한파 2025-11-02~2025-11-03,
+단일-한파-46,단일,한파,2025-12-02,2025-12-03,2,test,1,False,False,False,False,False,False,False,False,False,False,False,True,False,2025-12-04,대설,False,0,True,한파 2025-12-02~2025-12-03,
+단일-대설-29,단일,대설,2025-12-04,2025-12-04,1,test,1,False,False,False,False,False,False,False,False,False,False,False,False,True,,,False,0,True,대설 2025-12-04~2025-12-04,
+단일-한파-47,단일,한파,2025-12-25,2025-12-27,3,test,1,False,False,False,False,True,False,False,False,False,False,False,False,True,2025-12-31,한파,False,3,False,한파 2025-12-25~2025-12-27,공휴일·명절·근로자의날·파업
+단일-한파-48,단일,한파,2025-12-31,2025-12-31,1,test,1,False,True,False,False,False,False,False,False,False,False,False,False,True,,,False,1,False,한파 2025-12-31~2025-12-31,파일경계

@@ -13,7 +13,7 @@
 | 02 | `02_event_counts.ipynb` | 특보 종류별 이벤트 수와 겹침 제외 표 (깨끗한 이벤트 수) | 완료 |
 | 03 | `03_sarimax.ipynb` | SARIMAX 모형 N / A / B / C 비교 (날씨 없음, 특보만, ASOS만, 특보+ASOS) | 완료 |
 | 04 | `04_event_baseline.ipynb` | 이벤트 기준선, 충격·회복 계산, placebo (단일 / 복합 / 민감도) | 완료 |
-| 05 | `05_model_compare.ipynb` | 단순 SARIMA(Naive) → N → A/B 단계별 비교 | 예정 |
+| 05 | `05_model_compare.ipynb` | 단순 SARIMA(Naive) → N → A/B 단계별 비교 (하루 앞 롤링, 365일 한 번에) | 완료 |
 | 06 | `06_figures_ppt.ipynb` | 발표용 그림 | 예정 |
 | 07 | `07_test_2025.ipynb` | 2025년 test 평가 (설정이 모두 확정된 뒤) | 예정 |
 

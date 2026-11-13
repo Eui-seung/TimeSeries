@@ -14,8 +14,8 @@
 | 03 | `03_sarimax.ipynb` | SARIMAX 모형 N / A / B / C 비교 (날씨 없음, 특보만, ASOS만, 특보+ASOS) | 완료 |
 | 04 | `04_event_baseline.ipynb` | 이벤트 기준선, 충격·회복 계산, placebo (단일 / 복합 / 민감도) | 완료 |
 | 05 | `05_model_compare.ipynb` | 단순 SARIMA(Naive) → N → A/B 단계별 비교 (하루 앞 롤링, 365일 한 번에) | 완료 |
-| 06 | `06_figures_ppt.ipynb` | 발표용 그림 12개 (`figures/ppt/`, 슬라이드·메시지는 `figures/ppt/README.md`) | 완료 |
-| 07 | `07_test_2025.ipynb` | 2025년 test 평가 (설정이 모두 확정된 뒤) | 예정 |
+| 06 | `06_figures_ppt.ipynb` | 발표용 그림 14개 (`figures/ppt/`, 슬라이드·메시지는 `figures/ppt/README.md`) | 완료 |
+| 07 | `07_test_2025.ipynb` | 2025년 test 평가 (재학습 → 하루 앞·365일 예측, 2024와 비교, 2025 이벤트 기준선; **한 번만 실행**) | 완료 |
 
 > **2025년은 07번 전까지 모델링에 쓰지 않습니다.** (전처리 데이터에는 2025년 행이 들어 있지만 모델 입력에서 바로 버립니다.)
 
